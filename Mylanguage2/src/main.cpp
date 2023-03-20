@@ -18,7 +18,7 @@
  * @param ouputStream The output stream where the help will be shown (for example,
  * cout, cerr, etc) 
  */
-void showEnglishHelp(ostream& ouputStream) {
+void showEnglishHelp(std::ostream& ouputStream) {
     ouputStream << "Error, run with the following parameters:" << endl;
     ouputStream << "language2 <file1.bgr> [<file2.bgr> ... <filen.bgr>] <outputFile.bgr> " << endl;
 }
