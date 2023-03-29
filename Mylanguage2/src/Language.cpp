@@ -176,4 +176,8 @@ int Language::findBigram(Bigram bigram) const {
             throw std::out_of_range("No space for more bigrams at function apend ");
         }
     }
+
+    void Language::join(Language language){
+        
+    }
     
