@@ -1,6 +1,10 @@
+#include <fstream>
 #include "Language.h"
+#include"BigramFreq.h"
 
-Language :: Language(){
+const std::string Language::MAGIC_STRING_T="MP-LANGUAGE-T-1.0";
+
+Language::Language(){
     _languageId = "unknown";
     _size = 0;
             
@@ -24,7 +28,7 @@ Language::Language(int numberBigrams){
     
 }
 
-std::string Language::getLanguageId(){
+std::string Language::getLanguageId() const{
     return  _languageId;
 }
 
@@ -58,7 +62,7 @@ const int Language::getSize() const{
     return _size;
 }
 
-int Language::findBigram(Bigram bigram){
+int Language::findBigram(Bigram bigram) const {
     int x = 0;
     while((bigram.getText() != _vectorBigramFreq[x].getBigram().getText()) && (x<_size)){
         x++;
@@ -82,4 +86,94 @@ int Language::findBigram(Bigram bigram){
     
     void Language::sort(){
         
+        for(int x =0; x<_size; x++){
+        BigramFreq max= _vectorBigramFreq[x];
+        int pos = x;
+        
+        for(int j = x+1; j<_size; j++){    
+            
+            if(max.getFrequency() == _vectorBigramFreq[j].getFrequency()&&
+                    max.getBigram().toString() > _vectorBigramFreq[j].getBigram().toString()){
+               
+                max = _vectorBigramFreq[j];
+                pos = j;
+                
+            }
+                        
+            if(_vectorBigramFreq[j].getFrequency()>max.getFrequency()){
+                max = _vectorBigramFreq[j];
+                pos = j;
+            }
+        }
+        
+        BigramFreq swap;
+        swap =_vectorBigramFreq[x];
+        _vectorBigramFreq[x] = max;
+        _vectorBigramFreq[pos] = swap;
+        
     }
+    }
+     
+    void Language::save(const char fileName[]) const{
+        std::ofstream outputStream;
+        
+        outputStream.open(fileName);
+        if(outputStream){
+            outputStream << MAGIC_STRING_T;
+            outputStream << _languageId;
+            outputStream << _size;
+            for(int j = 0 ; j < _size; j++){
+                outputStream<<_vectorBigramFreq[j].toString();
+            }
+            
+            outputStream.close();
+        }
+        
+            
+        
+    }
+     void Language::load(const char fileName[]){
+        std::ifstream inputStream;
+        std:: string magicCad ;
+        int frequency ;
+        std::string bigram;
+        inputStream.open(fileName);
+        if(inputStream){
+            inputStream >>magicCad;
+            inputStream >>_languageId;
+            inputStream >> _size;
+            if(magicCad != MAGIC_STRING_T){
+                throw std::out_of_range("in function load Magic strings are not the same  ");
+            }
+            if(_size > DIM_VECTOR_BIGRAM_FREQ){
+                throw std::out_of_range("there are more bigrams than size for them in load function ");
+            }
+            for(int x = 0; x<_size; x++){
+                inputStream>>bigram;
+                inputStream>>frequency;
+                _vectorBigramFreq[x].setBigram(bigram);
+                _vectorBigramFreq[x].setFrequency(frequency);
+                
+            }
+            
+            inputStream.close();
+        }
+        else{
+            
+        }
+    }
+   
+
+    void Language::append(BigramFreq bigramFreq){
+        while(continue && x<_size){
+            
+        }
+        if(_size < DIM_VECTOR_BIGRAM_FREQ){
+           
+            
+        }
+        else{
+            throw std::out_of_range("No space for more bigrams at function apend ");
+        }
+    }
+    

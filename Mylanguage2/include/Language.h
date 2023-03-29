@@ -17,6 +17,7 @@
 
 
 #include <iostream>
+#include<fstream>
 #include "BigramFreq.h"
 
 /**
@@ -51,7 +52,7 @@ public:
      * Query method.
      * @return A const reference to the identifier of this language object.
      */
-    std::string getLanguageId();
+    std::string getLanguageId() const;
 
     /**
      * @brief Sets a new identifier for this language object. 
@@ -103,7 +104,7 @@ public:
      * @return If found, it returns the position where the bigram 
      * was found. If not, it returns -1
      */
-    int findBigram(Bigram bigram);
+    int findBigram(Bigram bigram) const ;
 
     /**
      * @brief Obtains a string with the following content:
@@ -134,7 +135,7 @@ public:
      * if the given file cannot be opened or if an error occurs while writing
      * to the file
      */
-    void save(char fileName[]);
+    void save(const char fileName[]) const;
 
     /**
      * @brief Loads into this object the Language object stored in the given 
@@ -151,7 +152,8 @@ public:
      * @throw throw std::invalid_argument Throws a std::invalid_argument if
      * an invalid magic string is found in the given file
      */
-    void load(char fileName[]);
+    
+    void load(const char fileName[]);
     
     /**
      * @brief Appends a copy of the given BigramFreq to this Language object.

@@ -67,7 +67,7 @@ public:
      * @return A string with the string and frecuency of the bigram
      * in this object. 
      */
-    std::string toString();
+    std::string toString()const ;
 
 private:
     Bigram _bigram; ///< the Bigram object

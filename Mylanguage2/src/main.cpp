@@ -2,7 +2,8 @@
  * Metodología de la Programación: Language2
  * Curso 2022/2023
  */
-
+#include<iostream>
+#include"Language.h"
 /* 
  * File:   main.cpp
  * @author Silvia Acid Carrillo <acid@decsai.ugr.es>
@@ -10,8 +11,9 @@
  * @author Luis Castillo Vidal <L.Castillo@decsai.ugr.es>
  *
  * Created on 7 de febrero de 2023, 14:02
- */
-
+ *
+ * /
+ 
 
 /**
  * Shows help about the use of this program in the given output stream
@@ -19,8 +21,8 @@
  * cout, cerr, etc) 
  */
 void showEnglishHelp(std::ostream& ouputStream) {
-    ouputStream << "Error, run with the following parameters:" << endl;
-    ouputStream << "language2 <file1.bgr> [<file2.bgr> ... <filen.bgr>] <outputFile.bgr> " << endl;
+    ouputStream << "Error, run with the following parameters:" << std::endl;
+    ouputStream << "language2 <file1.bgr> [<file2.bgr> ... <filen.bgr>] <outputFile.bgr> " << std::endl;
 }
 
 /**
@@ -38,8 +40,10 @@ void showEnglishHelp(std::ostream& ouputStream) {
  * > language2 <file1.bgr> [<file2.bgr> ... <filen.bgr>] <outputFile.bgr> 
  */
 int main(int argc, char* argv[]) {
-
-	holaasadasfdefmkefe fefñlklkmwefpokqwefpwrefwrf
-
+    if(argc < 3){
+        showEnglishHelp(std::cout);
+        return 1;
+    }
+    return 0;
 }
 

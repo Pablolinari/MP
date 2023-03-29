@@ -12,7 +12,7 @@ const Bigram &BigramFreq::getBigram()const{
     
 }
 
-int BigramFreq::getFrequency() const{
+const int BigramFreq::getFrequency() const{
     return _frequency;
 }
 
@@ -29,7 +29,7 @@ void BigramFreq::setFrequency(int frequency){
     }
 }
 
-std::string BigramFreq::toString(){
+  std::string BigramFreq::toString()const {
     
     return   " "+std::to_string(_frequency);
 }
