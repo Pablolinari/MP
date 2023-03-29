@@ -164,18 +164,18 @@ int Language::findBigram(Bigram bigram) const {
     }
    
 
-    void Language::append(BigramFreq bigramFreq){
-        while(continue && x<_size){
+    // void Language::append(BigramFreq bigramFreq){
+    //     while( x<_size){
             
-        }
-        if(_size < DIM_VECTOR_BIGRAM_FREQ){
+    //     }
+    //     if(_size < DIM_VECTOR_BIGRAM_FREQ){
            
             
-        }
-        else{
-            throw std::out_of_range("No space for more bigrams at function apend ");
-        }
-    }
+    //     }
+    //     else{
+    //         throw std::out_of_range("No space for more bigrams at function apend ");
+    //     }
+    // }
 
     void Language::join(Language language){
         
