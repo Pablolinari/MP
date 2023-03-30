@@ -3,6 +3,7 @@
  * Curso 2022/2023
  */
 #include<iostream>
+#include <ostream>
 #include"Language.h"
 /* 
  * File:   main.cpp

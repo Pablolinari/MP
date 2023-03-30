@@ -162,22 +162,29 @@ int Language::findBigram(Bigram bigram) const {
             
         }
     }
+
+    void Language::append(BigramFreq bigramFreq){
+        int bigram_pos = findBigram(bigramFreq.getBigram());
+        if(bigram_pos>=0){
+            int new_frequency = bigramFreq.getFrequency() + _vectorBigramFreq[bigram_pos].getFrequency();
+            _vectorBigramFreq[bigram_pos].setFrequency(new_frequency);
+        }
+        else if(_size < DIM_VECTOR_BIGRAM_FREQ){
+            _vectorBigramFreq[_size] = bigramFreq;
+            _size++;
+        }
+        else{
+            throw std::out_of_range("There is no space for more bigrams . at function append ");
+        }
+
+    }
    
 
-    // void Language::append(BigramFreq bigramFreq){
-    //     while( x<_size){
-            
-    //     }
-    //     if(_size < DIM_VECTOR_BIGRAM_FREQ){
-           
-            
-    //     }
-    //     else{
-    //         throw std::out_of_range("No space for more bigrams at function apend ");
-    //     }
-    // }
-
     void Language::join(Language language){
+        
+            for(int j = 0; j<  language.getSize(); j++){
+                append(language.at(j));
+            }
         
     }
     
