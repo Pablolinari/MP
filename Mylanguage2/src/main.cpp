@@ -52,11 +52,13 @@ int main(int argc, char* argv[]) {
         for(int x =2; x<(argc -1) ; x++ ){
             Language language_aux;
             language_aux.load(argv[x]);
-            language.join(language_aux);
+            if(language_aux.getLanguageId() == language.getLanguageId()){
+                language.join(language_aux);
+            }
 
         }
         language.sort();
-        language.save(argv[argc]);
+        language.save(argv[argc-1]);
 
     }
     return 0;

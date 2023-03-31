@@ -1,0 +1,1 @@
+Test #12 [tests//spanish2.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/mylanguage2  ../Books/BodasdeSangre_FedericoGarciaLorca.bgr ../Books/quijote.bgr ../Books/fortunata.bgr tests/output/spanish2.bgr

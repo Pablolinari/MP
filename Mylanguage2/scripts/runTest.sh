@@ -1,4 +1,4 @@
-#!/bin/bash
+#!  /bin/bash
 # Author: Luis Castillo Vidal L.Castillo@decsai.ugr.es
 # Pass test file $1
 

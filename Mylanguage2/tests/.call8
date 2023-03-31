@@ -1,0 +1,1 @@
+Test #8 [tests//5.30bigrams+lesMiserables+changedMan+30bigrams2.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/mylanguage2  data/30bigrams.bgr ../Books/lesMiserables.bgr ../Books/changedMan.bgr data/30bigrams.bgr tests/output/what.bgr.out

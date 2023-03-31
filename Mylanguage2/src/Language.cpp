@@ -67,7 +67,7 @@ int Language::findBigram(Bigram bigram) const {
     while((bigram.getText() != _vectorBigramFreq[x].getBigram().getText()) && (x<_size)){
         x++;
     }
-    if(x =_size){
+    if(x >_size){
         return -1;
     }
     else{
@@ -119,11 +119,11 @@ int Language::findBigram(Bigram bigram) const {
         
         outputStream.open(fileName);
         if(outputStream){
-            outputStream << MAGIC_STRING_T;
-            outputStream << _languageId;
-            outputStream << _size;
+            outputStream << MAGIC_STRING_T<<std::endl;
+            outputStream << _languageId<<std::endl;
+            outputStream << _size<<std::endl;
             for(int j = 0 ; j < _size; j++){
-                outputStream<<_vectorBigramFreq[j].toString();
+                outputStream<<_vectorBigramFreq[j].toString()<<std::endl;
             }
             
             outputStream.close();
@@ -145,22 +145,22 @@ int Language::findBigram(Bigram bigram) const {
             if(magicCad != MAGIC_STRING_T){
                 throw std::out_of_range("in function load Magic strings are not the same  ");
             }
-            else if(_size > DIM_VECTOR_BIGRAM_FREQ){
+            if(_size > DIM_VECTOR_BIGRAM_FREQ){
                 throw std::out_of_range("there are more bigrams than size for them in load function ");
             }
-            else{
-                for(int x = 0; x<_size; x++){
-                    inputStream>>bigram;
-                    inputStream>>frequency;
-                    _vectorBigramFreq[x].setBigram(bigram);
-                    _vectorBigramFreq[x].setFrequency(frequency);
-                    
-                }
+            for(int x = 0; x<_size; x++){
+                inputStream>>bigram;
+                inputStream>>frequency;
+                _vectorBigramFreq[x].setBigram(bigram);
+                _vectorBigramFreq[x].setFrequency(frequency);
+                
             }
             
             inputStream.close();
         }
-        
+        else{
+            
+        }
     }
 
     void Language::append(BigramFreq bigramFreq){
@@ -169,7 +169,7 @@ int Language::findBigram(Bigram bigram) const {
             int new_frequency = bigramFreq.getFrequency() + _vectorBigramFreq[bigram_pos].getFrequency();
             _vectorBigramFreq[bigram_pos].setFrequency(new_frequency);
         }
-        else if(_size < DIM_VECTOR_BIGRAM_FREQ){
+        else if(_size < DIM_VECTOR_BIGRAM_FREQ && (bigram_pos <0)){
             _vectorBigramFreq[_size] = bigramFreq;
             _size++;
         }

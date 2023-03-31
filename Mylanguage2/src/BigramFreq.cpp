@@ -31,5 +31,5 @@ void BigramFreq::setFrequency(int frequency){
 
   std::string BigramFreq::toString()const {
     
-    return   " "+std::to_string(_frequency);
+    return   _bigram.toString() + " " +std::to_string(_frequency);
 }
