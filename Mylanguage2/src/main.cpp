@@ -54,10 +54,11 @@ int main(int argc, char* argv[]) {
             language_aux.load(argv[x]);
             if(language_aux.getLanguageId() == language.getLanguageId()){
                 language.join(language_aux);
+                
             }
-
+            language.sort();
         }
-        language.sort();
+        
         language.save(argv[argc-1]);
 
     }

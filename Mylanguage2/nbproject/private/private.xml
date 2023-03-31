@@ -7,12 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/.out5</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/.fail5</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/.call1</file>
+            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/scripts/runTest.sh</file>
             <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/Language.cpp</file>
             <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/output/30bigrams+30bigrams2.bgr</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/.real5</file>
+            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/main.cpp</file>
             <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/salida.txt</file>
         </group>
     </open-files>

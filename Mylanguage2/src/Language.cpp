@@ -63,16 +63,13 @@ const int Language::getSize() const{
 }
 
 int Language::findBigram(Bigram bigram) const {
-    int x = 0;
-    while((bigram.getText() != _vectorBigramFreq[x].getBigram().getText()) && (x<_size)){
-        x++;
+    int pos = -1;
+    for(int x =0; x<_size; x++){
+        if(_vectorBigramFreq[x].getBigram().getText() == bigram. getText()){
+            pos = x;
+        }
     }
-    if(x >_size){
-        return -1;
-    }
-    else{
-        return x;
-    }
+    return pos;
 }
 
     const std::string Language ::toString(){
@@ -165,11 +162,11 @@ int Language::findBigram(Bigram bigram) const {
 
     void Language::append(BigramFreq bigramFreq){
         int bigram_pos = findBigram(bigramFreq.getBigram());
-        if(bigram_pos>=0){
+        if(bigram_pos>= 0){
             int new_frequency = bigramFreq.getFrequency() + _vectorBigramFreq[bigram_pos].getFrequency();
             _vectorBigramFreq[bigram_pos].setFrequency(new_frequency);
         }
-        else if(_size < DIM_VECTOR_BIGRAM_FREQ && (bigram_pos <0)){
+        else if(_size < DIM_VECTOR_BIGRAM_FREQ){
             _vectorBigramFreq[_size] = bigramFreq;
             _size++;
         }

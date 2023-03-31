@@ -1,7 +1,7 @@
 MP-LANGUAGE-T-1.0
 spanish
 30
-de 13
+de 1644
 do 802
 co 738
 da 576
