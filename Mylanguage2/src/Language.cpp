@@ -145,22 +145,22 @@ int Language::findBigram(Bigram bigram) const {
             if(magicCad != MAGIC_STRING_T){
                 throw std::out_of_range("in function load Magic strings are not the same  ");
             }
-            if(_size > DIM_VECTOR_BIGRAM_FREQ){
+            else if(_size > DIM_VECTOR_BIGRAM_FREQ){
                 throw std::out_of_range("there are more bigrams than size for them in load function ");
             }
-            for(int x = 0; x<_size; x++){
-                inputStream>>bigram;
-                inputStream>>frequency;
-                _vectorBigramFreq[x].setBigram(bigram);
-                _vectorBigramFreq[x].setFrequency(frequency);
-                
+            else{
+                for(int x = 0; x<_size; x++){
+                    inputStream>>bigram;
+                    inputStream>>frequency;
+                    _vectorBigramFreq[x].setBigram(bigram);
+                    _vectorBigramFreq[x].setFrequency(frequency);
+                    
+                }
             }
             
             inputStream.close();
         }
-        else{
-            
-        }
+        
     }
 
     void Language::append(BigramFreq bigramFreq){
