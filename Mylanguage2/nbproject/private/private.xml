@@ -7,11 +7,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/scripts/runTest.sh</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/Language.cpp</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/tests/output/30bigrams+30bigrams2.bgr</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/main.cpp</file>
-            <file>file:/home/pablo/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/salida.txt</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/Language.cpp</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/main.cpp</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/salida.txt</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/data/30bigrams.bgr</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/BigramFreq.cpp</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/data/4bigrams.bgr</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/include/Bigram.h</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/src/Bigram.cpp</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/include/BigramFreq.h</file>
+            <file>file:/home/arnold/Escritorio/MP/UGRMPBase/NetBeansProjects/Mylanguage2/include/Language.h</file>
         </group>
     </open-files>
 </project-private>
