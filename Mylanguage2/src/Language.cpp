@@ -74,7 +74,7 @@ int Language::findBigram(const Bigram &bigram) const {
 
      std::string Language ::toString() const{
         std::string text;
-        text+=std::to_string(_size) + "\n";
+        text =_languageId + "\n" + std::to_string(_size) + "\n";
         for(int x=0; x<_size; x++){
             text+= _vectorBigramFreq[x].toString() + "\n";
         }
@@ -115,13 +115,11 @@ int Language::findBigram(const Bigram &bigram) const {
         std::ofstream outputStream;
         
         outputStream.open(fileName);
+      
         if(outputStream){
             outputStream << MAGIC_STRING_T<<std::endl;
-            outputStream << _languageId<<std::endl;
-            outputStream << _size<<std::endl;
-            for(int j = 0 ; j < _size; j++){
-                outputStream<<_vectorBigramFreq[j].toString()<<std::endl;
-            }
+            outputStream << toString();
+            
             if(!outputStream){
                 throw std::out_of_range("the file is closed ");
             }
@@ -131,10 +129,7 @@ int Language::findBigram(const Bigram &bigram) const {
         else{
             throw std::out_of_range("the file is closed ");
         }
-        
-            
-        
-    }
+        }
      void Language::load(const char fileName[]){
         std::ifstream inputStream;
         std:: string magicCad ;
