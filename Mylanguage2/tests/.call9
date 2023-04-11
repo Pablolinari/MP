@@ -1,1 +1,0 @@
-Test #9 [tests//english.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/mylanguage2  ../Books/aliceWonder.bgr ../Books/changedMan.bgr tests/output/english.bgr

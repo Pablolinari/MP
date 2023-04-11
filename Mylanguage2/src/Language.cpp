@@ -28,7 +28,7 @@ Language::Language(int numberBigrams){
     
 }
 
-std::string Language::getLanguageId() const{
+const std::string&  Language::getLanguageId() const{
     return  _languageId;
 }
 
@@ -62,7 +62,7 @@ const int Language::getSize() const{
     return _size;
 }
 
-int Language::findBigram(Bigram bigram) const {
+int Language::findBigram(const Bigram &bigram) const {
     int pos = -1;
     for(int x =0; x<_size; x++){
         if(_vectorBigramFreq[x].getBigram().getText() == bigram. getText()){
@@ -72,7 +72,7 @@ int Language::findBigram(Bigram bigram) const {
     return pos;
 }
 
-    const std::string Language ::toString(){
+     std::string Language ::toString() const{
         std::string text;
         text+=std::to_string(_size) + "\n";
         for(int x=0; x<_size; x++){
@@ -122,8 +122,14 @@ int Language::findBigram(Bigram bigram) const {
             for(int j = 0 ; j < _size; j++){
                 outputStream<<_vectorBigramFreq[j].toString()<<std::endl;
             }
+            if(!outputStream){
+                throw std::out_of_range("the file is closed ");
+            }
             
             outputStream.close();
+        }
+        else{
+            throw std::out_of_range("the file is closed ");
         }
         
             
@@ -152,15 +158,18 @@ int Language::findBigram(Bigram bigram) const {
                 _vectorBigramFreq[x].setFrequency(frequency);
                 
             }
+            if(!inputStream){
+                throw std::out_of_range("the file is closed ");
+            }
             
             inputStream.close();
         }
         else{
-            
+            throw std::out_of_range("the file is closed ");
         }
     }
 
-    void Language::append(BigramFreq bigramFreq){
+    void Language::append(const BigramFreq &bigramFreq){
         int bigram_pos = findBigram(bigramFreq.getBigram());
         if(bigram_pos>= 0){
             int new_frequency = bigramFreq.getFrequency() + _vectorBigramFreq[bigram_pos].getFrequency();
@@ -177,7 +186,7 @@ int Language::findBigram(Bigram bigram) const {
     }
    
 
-    void Language::join(Language language){
+    void Language::join(const Language &language){
         
             for(int j = 0; j<  language.getSize(); j++){
                 append(language.at(j));

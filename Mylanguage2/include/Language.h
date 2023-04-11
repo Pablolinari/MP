@@ -52,7 +52,7 @@ public:
      * Query method.
      * @return A const reference to the identifier of this language object.
      */
-    std::string getLanguageId() const;
+    const std::string& getLanguageId() const;
 
     /**
      * @brief Sets a new identifier for this language object. 
@@ -104,7 +104,7 @@ public:
      * @return If found, it returns the position where the bigram 
      * was found. If not, it returns -1
      */
-    int findBigram(Bigram bigram) const ;
+    int findBigram(const Bigram &bigram) const ;
 
     /**
      * @brief Obtains a string with the following content:
@@ -115,7 +115,7 @@ public:
      * @return A string with the number of bigrams and the list of pairs of
      * bigram-frequency in the object
      */
-    const std::string toString();
+     std::string toString()const ;
 
     /**
      * @brief Sort the vector of BigramFreq in decreasing order of frequency.
@@ -164,7 +164,7 @@ public:
      * Modifier method
      * @param bigramFreq The BigramFreq to append to this object. Input parameter
      */
-    void append(BigramFreq bigramFreq);
+    void append(const BigramFreq & bigramFreq);
     
     /**
      * @brief Appends to this Language object, the list of pairs  
@@ -172,7 +172,7 @@ public:
      * Modifier method
      * @param language A Language object. Input parameter
      */
-    void join(Language language);
+    void join(const Language & language);
     
 private:
     static const int DIM_VECTOR_BIGRAM_FREQ = 2000; ///< The capacity of the array _vectorBigramFreq

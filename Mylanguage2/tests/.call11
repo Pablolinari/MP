@@ -1,1 +1,0 @@
-Test #11 [tests//german.test] valgrind --leak-check=full  dist/Debug/GNU-Linux/mylanguage2  "../Books/Faust_part1_Der_Tragodie_erster_Teil.Goethe.German.bgr" "../Books/Faust_part2_Der_Tragodie_zweiter_Teil.Goethe.German.bgr" tests/output/german.bgr
