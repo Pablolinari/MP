@@ -121,13 +121,13 @@ int Language::findBigram(const Bigram &bigram) const {
             outputStream << toString();
             
             if(!outputStream){
-                throw std::out_of_range("the file is closed ");
+                throw std::ios_base::failure("the file is closed ");
             }
             
             outputStream.close();
         }
         else{
-            throw std::out_of_range("the file is closed ");
+            throw std::ios_base::failure("the file is closed ");
         }
         }
      void Language::load(const char fileName[]){
@@ -141,7 +141,7 @@ int Language::findBigram(const Bigram &bigram) const {
             inputStream >>_languageId;
             inputStream >> _size;
             if(magicCad != MAGIC_STRING_T){
-                throw std::out_of_range("in function load Magic strings are not the same  ");
+                throw std::invalid_argument("in function load Magic strings are not the same  ");
             }
             if(_size > DIM_VECTOR_BIGRAM_FREQ){
                 throw std::out_of_range("there are more bigrams than size for them in load function ");
@@ -154,7 +154,7 @@ int Language::findBigram(const Bigram &bigram) const {
                 
             }
             if(!inputStream){
-                throw std::out_of_range("the file is closed ");
+                throw std::ios_base::failure("the file is closed ");
             }
             
             inputStream.close();
