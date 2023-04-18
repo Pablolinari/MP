@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=language3
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/language3
+CND_ARTIFACT_NAME_Debug=mylanguage3
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/mylanguage3
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=language3.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/language3.tar
+CND_PACKAGE_NAME_Debug=mylanguage3.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/mylanguage3.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=language3
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/language3
+CND_ARTIFACT_NAME_Release=mylanguage3
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/mylanguage3
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=language3.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/language3.tar
+CND_PACKAGE_NAME_Release=mylanguage3.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/mylanguage3.tar
 #
 # include compiler specific variables
 #

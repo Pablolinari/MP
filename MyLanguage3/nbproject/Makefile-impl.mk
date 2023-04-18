@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Language3
+PROJECTNAME=MyLanguage3
 
 # Active Configuration
 DEFAULTCONF=Debug

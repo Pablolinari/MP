@@ -86,8 +86,7 @@ public:
     /**
      * @brief Gets the distance between this Language object (\f$L_1\f$) and 
      * the given one @p otherLanguage (\f$L_2\f$).
-     * The distance between two Languages \f$L_1\f$ and \f$L_2\f$ is 
-     * calculated in the following way:
+     * T_ated in the following way:
      * \f$d = \frac{ \sum_{bigram_i(L_1)} | rank_{bigram_i(L_1)}^{L_1} - 
      * rank_{bigram_i(L_1)}^{L_2} | }{size(L_1) * size(L_1)}\f$, 
      * where \f$bigram_i(L_j)\f$ is the bigram \f$i\f$ of the Language \f$L_j, 
@@ -198,13 +197,6 @@ private:
     std::string _languageId; ///< language identifier
     BigramFreq _vectorBigramFreq[DIM_VECTOR_BIGRAM_FREQ]; ///< array of BigramFreq
     int _size; ///< Number of elements in _vectorBigramFreq
-    
-    /**
-     * @brief Sets the number of BigramFreq objects 
-     * @param size The size to set in this object
-     */
-    void setSize(int size);
-    
     static const std::string MAGIC_STRING_T; ///< A const string with the magic string for text files
 };
 
