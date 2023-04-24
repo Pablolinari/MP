@@ -12,11 +12,11 @@ const Bigram &BigramFreq::getBigram()const{
     
 }
 
-const int BigramFreq::getFrequency() const{
+ int BigramFreq::getFrequency() const{
     return _frequency;
 }
 
-void BigramFreq::setBigram(Bigram bigram){
+void BigramFreq::setBigram(const Bigram &  bigram){
     _bigram = bigram;
 }
 

@@ -196,12 +196,13 @@ int Language::findBigram(const Bigram &bigram) const {
         for (int x = 0;  x < _size ; x ++){
             pos = otherLanguage.findBigram(_vectorBigramFreq[x].getBigram());
             if(pos <0){
-                sum += std::fabs(x - _size);
+                sum = sum +  abs(x - _size);
             }
             else{
-                sum += std::fabs(x - pos);
+                sum = sum +  abs(x - pos);
             }
         }
-        double distance  = sum / (_size *_size);
+        double distance  ;
+        distance  = sum /(std::pow(_size,2));
         return distance;
     }
