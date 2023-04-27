@@ -29,28 +29,6 @@ void showEnglishHelp(std::ostream& outputStream) {
     outputStream << "language3 [-t min|max] <file1.bgr> <file2.bgr> [ ... <filen.bgr>]" << std::endl;
 }
 
-int MinMaxDistance(int size , Language array[], char operation , const Language & aux){
-    int pos ;
-    int minmax = aux.getDistance(array[0]);
-     
-     for(int x = 0; x< size ; x++ ){
-        if(operation == 'n'){
-            if(aux.getDistance(array[x]) < minmax){
-                pos = x;
-                minmax = aux.getDistance(array[x]); 
-            }
-        }
-        else{
-            if(aux.getDistance(array[x]) > minmax){
-                pos = x;
-                minmax = aux.getDistance(array[x]);
-            }
-        }
-        
-    }
-    
-    return pos;
-}
 
 /**
  * This program reads an undefined number of Language objects from the set of 
@@ -68,8 +46,8 @@ int MinMaxDistance(int size , Language array[], char operation , const Language 
  * > language3 [-t min|max] <file1.bgr> <file2.bgr> [  ... <filen.bgr>] 
  */
 int main(int argc, char* argv[]) {
-    int ncompare,first; //numero de idiomas languages a comparar , posicion del primer lanaguage
-    char operation ='n';
+    int files = argc - 2 ,first = 1; //numero de idiomas languages a comparar , posicion del primer lanaguage
+    bool min  = true;
     std::string phrase1, phrase2 ;
     
     //compruebo que todos los parametros de la función sean correctos , 
@@ -82,13 +60,14 @@ int main(int argc, char* argv[]) {
     if(argv[1][0] == '-'){
         if(strcmp(argv[1],"-t") == 0){
             
-            if(strcmp(argv[2],"min") ){
-                operation = 'n';
+            if(strcmp(argv[2],"min") ==0){
+                min = true ;
+                first = 3;
                
             }
             else if (strcmp(argv[2],"max") == 0){
-                operation = 'x';
-
+                min = false;
+                first = 3;
             }
             else{
                 showEnglishHelp(std::cout);
@@ -99,41 +78,56 @@ int main(int argc, char* argv[]) {
             showEnglishHelp(std::cout);
             return 1;
         }
-        ncompare = argc -4;
-        first = 4;
+        files = argc -4;
+   
     }
-    else{
-       ncompare = argc -2;
-       first = 2;
-    }
-    if(ncompare <=1){
+    
+    if(files <1){
         showEnglishHelp(std::cerr);
         return 1;
     }
 
     Language *array_language;
-    array_language = new Language [ncompare];
+    array_language = new Language [files];
 
     Language language_aux;
-    language_aux.load(argv[first-1]);
+    language_aux.load(argv[first]);
+    int aux=0;
+    for (int x  = first+1 ; x<argc; x++){
+        
+        array_language[aux].load(argv[x]);
+        array_language[aux].sort();
+                std::cout << "Distance to " <<argv[x]<<": " << language_aux.getDistance(array_language[aux])<<std::endl;
+                aux++;
+    }
+
+    int pos = 0;
+    double maxmin = language_aux.getDistance(array_language[0]);
     
-    for (int x  = 0 ; x<ncompare; x++){
-        array_language[x].load(argv[x+first-1]);
-        array_language[x].sort();
-                std::cout << "Distance to " <<argv[x+first]<<": " << language_aux.getDistance(array_language[x])<<std::endl;
+    for(int j = 0; j<files ; j++){
+        if(min){
+            if(language_aux.getDistance(array_language[j]) < maxmin){
+                maxmin = language_aux.getDistance(array_language[j]);
+                pos = j;
+            }
+        }
+        else{
+            if(language_aux.getDistance(array_language[j]) >  maxmin){
+                maxmin = language_aux.getDistance(array_language[j]);
+                pos = j;
+            }
+        }
     }
-
-
-    int maxmin = MinMaxDistance(ncompare,array_language,operation,language_aux);
-   
-    if(operation == 'n'){
-        std::cout << "Nearest language file: "<< argv[maxmin + first-1]<<std::endl;
-        std::cout <<"Identifier of the nearest language: "  << array_language[maxmin].getLanguageId() << std::endl;
+    
+    if( min){
+        
+        std::cout << "Nearest language file: "<< argv[pos + first  +1]<<std::endl;
+        std::cout <<"Identifier of the nearest language: "  << array_language[pos].getLanguageId() << std::endl;
 
     }
-    if(operation == 'x'){
-        std::cout << "Farthest language file: "<< argv[maxmin + first-1]<<std::endl;
-        std::cout <<"Identifier of the farthest language: " << array_language[maxmin].getLanguageId() << std::endl;
+    else{
+        std::cout << "Farthest language file: "<< argv[pos + first+1 ]<<std::endl;
+        std::cout <<"Identifier of the farthest language: " << array_language[pos].getLanguageId() << std::endl;
     }
     delete [] array_language;
           
