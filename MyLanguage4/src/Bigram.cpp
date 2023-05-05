@@ -26,14 +26,22 @@ Bigram::Bigram(const std::string& text){
 }
 
 Bigram::Bigram(char first, char second){
+    
     _text[0] = first;
     _text[1] = second;
     _text[2]='\0';
 }
 Bigram::Bigram(const char text[]){
-    _text[0] = text[0];
-    _text[1] = text[1];
-    _text[2] = '\0';
+    if(strlen(text) == 2){
+        _text[0] = text[0];
+        _text[1] = text[1];
+        _text[2] = '\0';
+    }
+    else{
+        _text[0] = '_';
+        _text[1] = '_';
+        _text[2] = '\0';
+    }
 }
 
 std::string Bigram::getText()const{

@@ -63,7 +63,7 @@ void Language::setLanguageId(const std::string& id){
 }
 
 const BigramFreq &Language::at(int index)const {
-    if(index < 0 || index > _size){
+    if(index < 0 || index >= _size){
         throw std::out_of_range("index out of range in function at(int index) class: Languge");
         
     }
@@ -74,7 +74,7 @@ const BigramFreq &Language::at(int index)const {
 }
 
 BigramFreq & Language::at(int index){
-    if(index < 0 || index > _size){
+    if(index < 0 || index >= _size){
         throw std::out_of_range("index out of range in function at(int index) class: Languge");
         
     }
