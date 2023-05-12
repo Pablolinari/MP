@@ -48,7 +48,7 @@ void showEnglishHelp(std::ostream& outputStream) {
 int main(int argc, char* argv[]) {
     int files = argc - 2 ,first = 1; //numero de idiomas languages a comparar , posicion del primer lanaguage
     bool min  = true;
-    std::string phrase1, phrase2 ;
+    
     
     //compruebo que todos los parametros de la función sean correctos , 
     //en caso de que falte alguno termina la ejecución del programa.
@@ -129,7 +129,9 @@ int main(int argc, char* argv[]) {
         std::cout << "Farthest language file: "<< argv[pos + first+1 ]<<std::endl;
         std::cout <<"Identifier of the farthest language: " << array_language[pos].getLanguageId() << std::endl;
     }
+    language_aux.~Language();
     delete [] array_language;
+    
     
     return 0;
     }

@@ -210,6 +210,10 @@ private:
     BigramFreq* _vectorBigramFreq; ///< Dynamic array of BigramFreq
     int _size; ///< Number of elements in _vectorBigramFreq
     static const std::string MAGIC_STRING_T; ///< A const string with the magic string for text files
+    
+    void allocate(int n);
+    void dellocate();
+    void reallocate(int n);
 };
 
 #endif /* LANGUAGE_H */
