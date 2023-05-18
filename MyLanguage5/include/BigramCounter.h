@@ -50,7 +50,7 @@ public:
      * @param orig the BigramCounter object used as source for the copy. Input
      * parameter
      */
-    BigramCounter(BigramCounter orig);
+    BigramCounter(const BigramCounter & orig);
 
     /**
      * @brief Destructor

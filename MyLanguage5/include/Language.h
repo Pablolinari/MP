@@ -201,14 +201,14 @@ public:
      * @param index index of the element. Input parameter
      * @return A reference to the BigramFreq object at position @p index
      */
-    BigramFreq operator[](int index);
+    BigramFreq operator[](int index)const ;
 
     /**
      * @brief Overloading of the [] operator for Language class
      * @param index index of the element. Input parameter 
      * @return A reference to the BigramFreq object at position @p index
      */
-    BigramFreq operator[](int index);
+    BigramFreq & operator[](int index);
     
     /**
      * @brief Overloading of the += operator with a Language parameter. 
@@ -219,7 +219,7 @@ public:
      * @param language A Language object. Input parameter
      * @return A reference to this object.
      */
-    Language operator+=(Language language);
+    Language operator+=(const Language &language);
       
 private:
     std::string _languageId; ///< language identifier
@@ -227,6 +227,9 @@ private:
     int _size; ///< Number of elements in _vectorBigramFreq
     static const std::string MAGIC_STRING_T; ///< A const string with the magic string for text files
     static const std::string MAGIC_STRING_B; ///< A const string with the magic string for binary files
+    void allocate(int n);
+    void dellocate();
+    void reallocate(int n);
 };
 
 /**

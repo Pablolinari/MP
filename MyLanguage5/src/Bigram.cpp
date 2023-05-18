@@ -6,6 +6,7 @@
 #include <string>
 #include <cstring>
 #include <functional>
+#include <ostream>
 #include "Bigram.h"
 
 using namespace std;
@@ -90,11 +91,11 @@ std::string Bigram::getText()const{
      
  }
  
- std::osetream operator<<(std::ostream & os , const Bigram & bigram){
+ std::ostream operator<<(std::ostream & os , const Bigram & bigram){
      os << bigram.toString();
-     return os 
+     return os;
  }
- std::ostream operator>>(std::istream & is , const Bigram & bigram){
+ std::istream operator>>(std::istream & is , Bigram & bigram){
      std::string text;
      is >> text;
      if(text.size() == 2){
@@ -105,5 +106,5 @@ std::string Bigram::getText()const{
          bigram.at(0) = '_';
          bigram.at(1)='_';
      }
-     return is 
+     return is; 
  }

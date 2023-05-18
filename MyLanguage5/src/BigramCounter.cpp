@@ -14,6 +14,7 @@
 
 #include "BigramCounter.h"
 
+
 /**
  * DEFAULT_VALID_CHARACTERS is a c-string that contains the set of characters
  * that will be considered as part of a word (valid chars). 
@@ -25,17 +26,24 @@
 const char* const BigramCounter::DEFAULT_VALID_CHARACTERS="abcdefghijklmnopqrstuvwxyz\xE0\xE1\xE2\xE3\xE4\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF6\xF8\xF9\xFA\xFB\xFC\xFD\xFE\xFF";
 
 BigramCounter::BigramCounter(std::string validChars = DEFAULT_VALID_CHARACTERS){
-    _frequency = new int [validChars.size()];
+    _frequency = new int *[validChars.size()];
+    for(int i = 0; i < validChars.size();i++){
+        _frequency[i] = new int [validChars.size()];
+    }
     _validCharacters = validChars;
     
 }
-BigramCounter::BigramCounter(BigramCounter orig){
+BigramCounter::BigramCounter(const BigramCounter & orig){
      _frequency = orig._frequency;
      _validCharacters = orig._validCharacters;
      
 }
 
 BigramCounter::~BigramCounter(){
+    for(int i = 0 ; i<_validCharacters.size();i++){
+        delete [] _frequency[i];
+        _frequency[i] = nullptr;
+    }
     delete [] _frequency;
     _frequency = nullptr;
 }
@@ -45,22 +53,30 @@ int BigramCounter::getSize()const{
 }
 
 int BigramCounter::getNumberActiveBigrams()const{
-    int bigramcounter = 0;
-    for(int i =0; i<getSize();i++){
-        for(int j =0; j<getSize();j++){
-            if(_frequency[i][j] >0){
-                bigramcounter++;
+    int active =0;
+   for(int i = 0 ; i< _validCharacters.size(); i++){
+        for(int j = 0; j< _validCharacters.size();j++){
+            if(_frequency[i][j] > 0){
+                active++;
             }
         }
-    }
-    return bigramcounter;
-    
+   }
+   return active;
 }
 
-bool BigramCounter::setFrequency(Bigram bigram ,int frequency){
-    bool bigramOk = false;
-    for(int i =0; i< _validCharacters.size() && !bigramOk){
-    bigram.getText().at(0); 
+bool BigramCounter::setFrequency(const Bigram &bigram ,int frequency){
+    int i ,j;
+    bool exist =false;
+    i =_validCharacters.find(bigram.toString().at(0));
+    j =_validCharacters.find(bigram.toString().at(1));
+
+    if(i!= std::string::npos && j != std::string::npos){
+        _frequency[i][j] = frequency;
+        exist = true;
     }
+    return exist;
+}
+
+void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency =0){
     
 }

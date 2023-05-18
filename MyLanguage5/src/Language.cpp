@@ -86,6 +86,21 @@ BigramFreq & Language::at(int index) {
 int Language::getSize() const {
     return _size;
 }
+double Language::getDistance(const Language& otherLanguage)const {
+    int sum = 0;
+    int pos;
+    for (int x = 0; x < _size; x++) {
+        pos = otherLanguage.findBigram(_vectorBigramFreq[x].getBigram());
+        if (pos < 0) {
+            sum = sum + abs(x - _size);
+        } else {
+            sum = sum + abs(x - pos);
+        }
+    }
+    double distance;
+    distance = sum / (std::pow(_size, 2));
+    return distance;
+}
 
 int Language::findBigram(const Bigram &bigram) const {
     int pos = -1;
@@ -211,28 +226,17 @@ void Language::append(const BigramFreq &bigramFreq) {
 
 }
 
-void Language::join(const Language &language) {
-
-    for (int j = 0; j < language.getSize(); j++) {
-        append(language.at(j));
-    }
-
+BigramFreq Language::operator[](int index)const{
+    return at(index);
+}
+BigramFreq & Language::operator[](int index){
+    return at(index);
 }
 
-double Language::getDistance(const Language& otherLanguage)const {
-    int sum = 0;
-    int pos;
-    for (int x = 0; x < _size; x++) {
-        pos = otherLanguage.findBigram(_vectorBigramFreq[x].getBigram());
-        if (pos < 0) {
-            sum = sum + abs(x - _size);
-        } else {
-            sum = sum + abs(x - pos);
-        }
+Language Language::operator+=(const Language & language){
+    for(int i = 0; i<language._size; i++){
+        append(language._vectorBigramFreq[i]);
     }
-    double distance;
-    distance = sum / (std::pow(_size, 2));
-    return distance;
 }
 
 void Language::allocate(int n) {
@@ -240,6 +244,7 @@ void Language::allocate(int n) {
     _size = n;
 
 }
+
 
 void Language::dellocate() {
     delete [] _vectorBigramFreq;
@@ -259,3 +264,9 @@ void Language::reallocate(int n ) {
     _size = n;
 }
 
+std::ostream operator<<(std::ostream os , Language language){
+
+}
+std::istream operator>>(std::istream is ,Language language){
+    
+}
