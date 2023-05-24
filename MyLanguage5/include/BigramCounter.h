@@ -102,7 +102,7 @@ public:
      * Input parameter
      * @return A reference to this object
      */
-    BigramCounter operator=(const BigramCounter & orig);
+    BigramCounter &operator=(const BigramCounter & orig);
 
 
     /**
@@ -113,7 +113,7 @@ public:
      * @param rhs a BigramCounter object 
      * @return A reference to this object
      */
-    BigramCounter operator+=(const BigramCounter & rhs);
+    BigramCounter & operator+=(const BigramCounter & rhs);
 
     /**
      * @brief Reads the given text file and calculates the frequencies of each 
@@ -153,7 +153,7 @@ private:
      * @param column Column of the element. Input parameter
      * @return A const reference to the element at the given position
      */
-    int operator()(int row, int column);
+    int & operator()(int row, int column)const ;
 
     /**
      * @brief Overloading of the () operator to access to the element at a 
@@ -163,7 +163,9 @@ private:
      * @param column Column of the element. Input parameter
      * @return A reference to the element at the given position
      */
-    int operator()(int row, int column);
+    int & operator()(int row, int column);
+    int getCol (const Bigram & bi);
+    int getFil (const Bigram & bi);
 };
 
 #endif /* BIGRAM_COUNTER_H */

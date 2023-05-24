@@ -78,5 +78,64 @@ bool BigramCounter::setFrequency(const Bigram &bigram ,int frequency){
 }
 
 void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency =0){
+    int i,j;
+    i = getFil(bigram);
+    j = getCol(bigram);
     
+    if(i!= std::string::npos && j != std::string::npos){
+        if(frequency == 0){
+            _frequency[i][j]++;
+        }
+        else{
+            _frequency[i][j] = _frequency[i][j] + frequency;
+        }
+    }
+    else{
+        throw std::invalid_argument("theg iven bigram is not valid");
+    }
+}
+BigramCounter & BigramCounter::operator=(const BigramCounter & orig){
+    int **aux;
+    aux = new int *[getSize()];
+    for(int i = 0 ; i< getSize(); i++){
+        aux[i] = new int[getSize()];
+    }
+
+    for(int i = 0; i< orig.getSize(); i++){
+        for(int j = 0; j<orig.getSize();j++){
+            aux[i][j] = orig(i,j);
+        }
+    }
+    for(int i = 0 ; i<_validCharacters.size();i++){
+        delete [] _frequency[i];
+        _frequency[i] = nullptr;
+    }
+    delete [] _frequency;
+    _frequency = aux;
+
+}
+
+BigramCounter & BigramCounter::operator+=(const BigramCounter & rhs){
+    for(int i = 0; i< rhs.getSize(); i++){
+        for(int j = 0; j<rhs.getSize();j++){
+            _frequency[i][j] = rhs(i,j) + _frequency[i][j];
+        }
+    }
+}
+
+void calculateFrequencies(char* fileName){
+
+}
+
+int & BigramCounter::operator()(int row, int column)const{
+    return  _frequency[row][column];
+}
+int & BigramCounter::operator()(int row, int column){
+    return  _frequency[row][column];
+}
+int BigramCounter::getCol (const Bigram & bi){
+    return _validCharacters.find(bi.toString().at(1));
+}
+int BigramCounter::getFil (const Bigram & bi){
+    return _validCharacters.find(bi.toString().at(0));
 }

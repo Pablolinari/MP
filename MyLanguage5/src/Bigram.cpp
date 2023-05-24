@@ -91,11 +91,11 @@ std::string Bigram::getText()const{
      
  }
  
- std::ostream operator<<(std::ostream & os , const Bigram & bigram){
+ std::ostream & operator<<(std::ostream & os , const Bigram & bigram){
      os << bigram.toString();
      return os;
  }
- std::istream operator>>(std::istream & is , Bigram & bigram){
+ std::istream &operator>>(std::istream & is , Bigram & bigram){
      std::string text;
      is >> text;
      if(text.size() == 2){
