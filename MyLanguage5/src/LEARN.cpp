@@ -115,7 +115,15 @@ int main(int argc, char *argv[]) {
         matrix.calculateFrequencies(argv[i]);
     }
     language = matrix.toLanguage();
-    cout << language.toString();
+    language.sort();
+    if(outfile > 0){
+        language.save(argv[outfile]);
+    }
+    else{
+      
+        language.save(outputfile);
+   }
+    
     
     language.~Language();
     matrix.~BigramCounter();

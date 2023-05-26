@@ -42,7 +42,7 @@ BigramCounter::BigramCounter(const BigramCounter & orig){
 }
 
 BigramCounter::~BigramCounter(){
-    for(int i = 0 ; i<_validCharacters.size();i++){
+    for(int i = 0 ; i<getSize();i++){
         delete [] _frequency[i];
         _frequency[i] = nullptr;
     }
@@ -137,8 +137,8 @@ bool BigramCounter::calculateFrequencies(char* fileName){
         int i, j;
         
         for(int i = 1; i< line.size();i++){
-            if(isValidCharacter(line.at(i-1),_validCharacters) && isValidCharacter(line.at(i),_validCharacters)){
-                increaseFrequency(Bigram(line.at(i-1),line.at(i)));
+            if(isValidCharacter(tolower(line.at(i-1)),_validCharacters) && isValidCharacter(tolower(line.at(i)),_validCharacters)){
+                increaseFrequency(Bigram(tolower(line.at(i-1)),tolower(line.at(i))));
             }
         }
         reading = true;
