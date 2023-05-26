@@ -233,40 +233,33 @@ BigramFreq & Language::operator[](int index){
     return at(index);
 }
 
-Language Language::operator+=(const Language & language){
+Language & Language::operator+=(const Language & language){
     for(int i = 0; i<language._size; i++){
         append(language._vectorBigramFreq[i]);
     }
+    return *this;
 }
-
-void Language::allocate(int n) {
-    _vectorBigramFreq = new BigramFreq[n];
-    _size = n;
-
-}
-
-
-void Language::dellocate() {
-    delete [] _vectorBigramFreq;
-    _vectorBigramFreq = nullptr;
-    _size = 0;
-
-}
-
-void Language::reallocate(int n ) {
-    BigramFreq *aux;
-    aux = new BigramFreq[n];
-    for (int x = 0; x < _size; x++) {
-        aux[x] = _vectorBigramFreq[x];
-    }
-    delete [] _vectorBigramFreq;
-    _vectorBigramFreq = aux;
-    _size = n;
-}
-
-std::ostream operator<<(std::ostream os , Language language){
-
-}
-std::istream operator>>(std::istream is ,Language language){
+std::istream  &operator>>(std::istream& is, Language &language){
+    std::string magicstring , languageid , bigram;
+    int freq; 
+    is >> magicstring;
+    is >> languageid;
+    is >> freq;
+    language.setLanguageId(languageid);
+    while (is){
+        is >> bigram;
+        is >> freq;
+        BigramFreq bigramFreq;
+        bigramFreq.setBigram(Bigram(bigram));
+        bigramFreq.setFrequency(freq);
+        language.append(bigramFreq);
     
+    }
+    return is;
 }
+std::ostream  &operator<<(std::ostream &os , Language& language){
+    os<< language.toString();
+    return os;
+}
+
+

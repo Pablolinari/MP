@@ -13,6 +13,8 @@
  */
 
 #include "BigramCounter.h"
+#include <iostream>
+#include <fstream>
 
 
 /**
@@ -25,7 +27,7 @@
  */
 const char* const BigramCounter::DEFAULT_VALID_CHARACTERS="abcdefghijklmnopqrstuvwxyz\xE0\xE1\xE2\xE3\xE4\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF6\xF8\xF9\xFA\xFB\xFC\xFD\xFE\xFF";
 
-BigramCounter::BigramCounter(std::string validChars = DEFAULT_VALID_CHARACTERS){
+BigramCounter::BigramCounter(std::string validChars ){
     _frequency = new int *[validChars.size()];
     for(int i = 0; i < validChars.size();i++){
         _frequency[i] = new int [validChars.size()];
@@ -77,7 +79,7 @@ bool BigramCounter::setFrequency(const Bigram &bigram ,int frequency){
     return exist;
 }
 
-void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency =0){
+void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency){
     int i,j;
     i = getFil(bigram);
     j = getCol(bigram);
@@ -112,6 +114,7 @@ BigramCounter & BigramCounter::operator=(const BigramCounter & orig){
     }
     delete [] _frequency;
     _frequency = aux;
+    return *this;
 
 }
 
@@ -121,10 +124,42 @@ BigramCounter & BigramCounter::operator+=(const BigramCounter & rhs){
             _frequency[i][j] = rhs(i,j) + _frequency[i][j];
         }
     }
+    return *this;
 }
 
-void calculateFrequencies(char* fileName){
-
+bool BigramCounter::calculateFrequencies(char* fileName){
+    std::ifstream read;
+    bool reading = false;
+    read.open(fileName);
+    while (read){
+        std::string line; 
+        getline(read,line);
+        int i, j;
+        
+        for(int i = 1; i< line.size();i++){
+            if(isValidCharacter(line.at(i-1),_validCharacters) && isValidCharacter(line.at(i),_validCharacters)){
+                increaseFrequency(Bigram(line.at(i-1),line.at(i)));
+            }
+        }
+        reading = true;
+    }
+    read.close();
+    return reading;
+}
+Language BigramCounter::toLanguage(){
+    Language language;
+    BigramFreq bigram;
+    
+    for(int i = 0; i<getSize(); i++){
+        for(int j = 0; j< getSize(); j++){
+            if(_frequency[i][j] > 0){
+                bigram.setFrequency(_frequency[i][j]);
+                bigram.setBigram(Bigram(_validCharacters.at(i) , _validCharacters.at(j)));
+                language.append(bigram);
+            }
+        }
+    }
+    return language;
 }
 
 int & BigramCounter::operator()(int row, int column)const{

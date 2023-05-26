@@ -124,7 +124,7 @@ public:
      * @param fileName The name of the file to process. Input parameter
      * @return true if the file could be read; false otherwise
      */
-    void calculateFrequencies(char* fileName);
+    bool calculateFrequencies(char* fileName);
 
     /**
      * @brief Builds a Language object from this BigramCounter object. The 

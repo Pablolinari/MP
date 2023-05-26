@@ -15,9 +15,7 @@ Bigram::Bigram(const std::string& text){
         _text[0] = text.at(0);
         _text[1] = text.at(1);
         _text[2] = '\0';
-        
-        
-        
+          
     }
     else{
         _text[0] = '_';
@@ -95,7 +93,8 @@ std::string Bigram::getText()const{
      os << bigram.toString();
      return os;
  }
- std::istream &operator>>(std::istream & is , Bigram & bigram){
+ 
+ std::istream &operator>>(std::istream & is ,  Bigram & bigram){
      std::string text;
      is >> text;
      if(text.size() == 2){

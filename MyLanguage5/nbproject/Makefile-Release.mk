@@ -42,7 +42,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/JOIN.o \
 	${OBJECTDIR}/src/LEARN.o \
 	${OBJECTDIR}/src/Language.o \
-	${OBJECTDIR}/src/metamain.o
+	${OBJECTDIR}/src/metamain.o \
+	${OBJECTDIR}/src/probador.o \
+	${OBJECTDIR}/src/prueba.o
 
 
 # C Compiler Flags
@@ -108,6 +110,16 @@ ${OBJECTDIR}/src/metamain.o: src/metamain.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/metamain.o src/metamain.cpp
+
+${OBJECTDIR}/src/probador.o: src/probador.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/probador.o src/probador.cpp
+
+${OBJECTDIR}/src/prueba.o: src/prueba.cpp
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -std=c++14 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/prueba.o src/prueba.cpp
 
 # Subprojects
 .build-subprojects:

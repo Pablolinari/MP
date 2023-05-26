@@ -1,7 +1,6 @@
 #include <string>
 #include "BigramFreq.h"
 #include "Bigram.h"
-
 BigramFreq::BigramFreq()
 {
     _bigram = Bigram("__");
@@ -41,84 +40,71 @@ std::string BigramFreq::toString() const
     return _bigram.toString() + " " + std::to_string(_frequency);
 }
 
-std::ostream operator<<(std::ostream os, const BigramFreq &bigramFreq)
-{
-}
-std::istream operator>>(std::istream ,const BigramFreq & bigramFreq){
 
-}
-bool operator>(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2)
-{
-    bool higher = false;
-    if (bigramFreq1.getFrequency() > bigramFreq2.getFrequency())
-    {
-        higher = true;
-    }
-    else if (bigramFreq1.getFrequency() == bigramFreq2.getFrequency())
-    {
-        if (bigramFreq1.getBigram().toString() < bigramFreq2.getBigram().toString())
-        {
-            higher = true;
-        }
-    }
-    return higher;
+std::ostream &operator<<(std::ostream &os, const BigramFreq & bigramFreq){
+    os << bigramFreq.toString();
+    return os;
 }
 
-bool operator<(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2)
-{
-    bool lower = false;
-    if (bigramFreq1.getFrequency() > bigramFreq2.getFrequency())
-    {
-        lower = true;
-    }
-    else if (bigramFreq1.getFrequency() == bigramFreq2.getFrequency())
-    {
-        if (bigramFreq1.getBigram().toString() > bigramFreq2.getBigram().toString())
-        {
-            lower = true;
-        }
-    }
-    return lower;
+std::istream &operator>>(std::istream &is, BigramFreq &bigramFreq){
+    std::string bigram;
+    int freq;
+    is>>bigram; is >> freq;
+
+    bigramFreq.setBigram(bigram); bigramFreq.setFrequency(freq);
+
+    return is;
 }
 
-bool operator==(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2)
-{
-    bool same = false;
-    if (bigramFreq1.getFrequency() == bigramFreq2.getFrequency() &&
-        bigramFreq1.getBigram().toString() == bigramFreq2.getBigram().toString())
-    {
-        same = true;
+bool operator>(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
+    bool mayor = false;
+    if(bigramFreq1.getFrequency() < bigramFreq2.getFrequency()){
+        mayor = true;
     }
-    return same;
-}
-bool operator!=(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2)
-{
-    bool no_same = false;
-    if (bigramFreq1.getFrequency() != bigramFreq2.getFrequency() &&
-        bigramFreq1.getBigram().toString() != bigramFreq2.getBigram().toString())
-    {
-        no_same = true;
+    else if(bigramFreq1.getFrequency() == bigramFreq2.getFrequency()&& bigramFreq1.getBigram().toString()< bigramFreq2.getBigram().toString()){
+        mayor = true;
     }
-    return no_same;
+    return mayor;
 }
 
-bool operator<=(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2)
-{
-    bool lowerthan = false;
-    if (bigramFreq1.getFrequency() <= bigramFreq2.getFrequency() &&
-        bigramFreq1.getBigram().toString() <= bigramFreq2.getBigram().toString())
-    {
-        lowerthan = true;
+bool operator<(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
+    bool mayor = false;
+    if(bigramFreq1.getFrequency() > bigramFreq2.getFrequency()){
+        mayor = true;
     }
-    return lowerthan;
+    else if(bigramFreq1.getFrequency() == bigramFreq2.getFrequency()&& bigramFreq1.getBigram().toString()> bigramFreq2.getBigram().toString()){
+        mayor = true;
+    }
+    return mayor;
 }
 
-bool operator>=(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2) {
-bool higherthan = false;
-if (bigramFreq1.getFrequency() >= bigramFreq2.getFrequency() &&
-    bigramFreq1.getBigram().toString() >= bigramFreq2.getBigram().toString())
-{
-    higherthan = true;
+bool operator==(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
+    bool equal = false;
+    if(bigramFreq1.toString() == bigramFreq2.toString()){
+        equal = true;
+    }
+    return equal;
 }
-return higherthan;
+
+bool operator!=(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
+    bool equal = false;
+    if(bigramFreq1.toString() != bigramFreq2.toString()){
+        equal = true;
+    }
+    return equal;
+}
+
+bool operator<=(const BigramFreq&bigramFreq1, const BigramFreq &bigramFreq2){
+    bool eval = false;
+    if(bigramFreq1 == bigramFreq2 || bigramFreq1 < bigramFreq2){
+        eval = true;
+    }
+    return eval;
+}
+bool operator>=(const BigramFreq&bigramFreq1, const BigramFreq &bigramFreq2){
+    bool eval = false;
+    if(bigramFreq1 == bigramFreq2 || bigramFreq1 > bigramFreq2){
+        eval = true;
+    }
+    return eval;
 }
