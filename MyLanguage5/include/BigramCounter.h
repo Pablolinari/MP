@@ -166,6 +166,7 @@ private:
     int & operator()(int row, int column);
     int getCol (const Bigram & bi);
     int getFil (const Bigram & bi);
+    void clean(int s);
 };
 
 #endif /* BIGRAM_COUNTER_H */

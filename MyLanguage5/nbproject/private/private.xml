@@ -7,9 +7,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/include/Language.h</file>
-            <file>file:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/LEARN.cpp</file>
-            <file>file:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/pruebas/p1.txt</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/output.bgr</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/probador.cpp</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/include/BigramFreq.h</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/hola</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/Language.cpp</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/JOIN.cpp</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/include/Language.h</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/include/BigramCounter.h</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/include/Bigram.h</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/LEARN.cpp</file>
+            <file>file:/home/pablo/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/BigramCounter.cpp</file>
         </group>
     </open-files>
 </project-private>

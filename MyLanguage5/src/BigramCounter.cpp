@@ -33,6 +33,7 @@ BigramCounter::BigramCounter(std::string validChars ){
         _frequency[i] = new int [validChars.size()];
     }
     _validCharacters = validChars;
+    clean(_validCharacters.size());
     
 }
 BigramCounter::BigramCounter(const BigramCounter & orig){
@@ -42,7 +43,7 @@ BigramCounter::BigramCounter(const BigramCounter & orig){
 }
 
 BigramCounter::~BigramCounter(){
-    for(int i = 0 ; i<getSize();i++){
+    for(int i = 0 ; i<getSize();++i){
         delete [] _frequency[i];
         _frequency[i] = nullptr;
     }
@@ -130,6 +131,7 @@ BigramCounter & BigramCounter::operator+=(const BigramCounter & rhs){
 bool BigramCounter::calculateFrequencies(char* fileName){
     std::ifstream read;
     bool reading = false;
+    clean(getSize());
     read.open(fileName);
     while (read){
         std::string line; 
@@ -173,4 +175,11 @@ int BigramCounter::getCol (const Bigram & bi){
 }
 int BigramCounter::getFil (const Bigram & bi){
     return _validCharacters.find(bi.toString().at(0));
+}
+void BigramCounter::clean(int s){
+    for(int i = 0 ; i< s; i++){
+        for(int j = 0; j< s; j++){
+            _frequency[i][j] = 0;
+        }
+    }
 }
