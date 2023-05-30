@@ -153,7 +153,7 @@ public:
     std::string toString() const;
 
     /**
-     * @brief Sort the vector of BigramFreq in decreasing order of frequency.
+     * @brief Sorts the vector of BigramFreq in decreasing order of frequency.
      * If two BigramFreq objects have the same frequency, then the alphabetical 
      * order of the bigrams of those objects will be considered (the object 
      * with a bigram that comes first alphabetically will appear first)
@@ -165,11 +165,13 @@ public:
      * @brief Saves this Language object in the given file
      * @param fileName A c-string with the name of the file where this Language 
      * object will be saved
+     * @param mode The mode to use to save this Language object: 't' for text
+     * mode and 'b' for binary mode
      * @throw std::ios_base::failure Throws a std::ios_base::failure exception 
      * if the given file cannot be opened or if an error occurs while writing
      * to the file
      */
-    void save(const char fileName[]) const;
+    void save(const char fileName[], char mode = 't') const;
 
     /**
      * @brief Loads into this object the Language object stored in the given 
@@ -184,7 +186,8 @@ public:
      * @throw throw std::invalid_argument Throws a std::invalid_argument 
      * exception if an invalid magic string is found in the given file
      */
-    void load(const char fileName[]);
+    void load(const char fileName[], char mode = 't');
+
     
     /**
      * @brief Appends a copy of the given BigramFreq to this Language object.
@@ -201,14 +204,14 @@ public:
      * @param index index of the element. Input parameter
      * @return A reference to the BigramFreq object at position @p index
      */
-    BigramFreq operator[](int index)const ;
+    BigramFreq operator[](int index)const;
 
     /**
      * @brief Overloading of the [] operator for Language class
      * @param index index of the element. Input parameter 
      * @return A reference to the BigramFreq object at position @p index
      */
-    BigramFreq & operator[](int index);
+    BigramFreq &operator[](int index);
     
     /**
      * @brief Overloading of the += operator with a Language parameter. 
@@ -219,7 +222,7 @@ public:
      * @param language A Language object. Input parameter
      * @return A reference to this object.
      */
-    Language &operator+=(const Language &language);
+    Language & operator+=(const Language  &language);
       
 private:
     std::string _languageId; ///< language identifier
@@ -227,9 +230,10 @@ private:
     int _size; ///< Number of elements in _vectorBigramFreq
     static const std::string MAGIC_STRING_T; ///< A const string with the magic string for text files
     static const std::string MAGIC_STRING_B; ///< A const string with the magic string for binary files
-    void allocate(int n);
-    void dellocate();
-    void reallocate(int n);
+
+    void alocate(int n);
+    void delocate();
+
 };
 
 /**
@@ -238,7 +242,7 @@ private:
  * @param language the Language object. Input parameter
  * @return @p os A reference to the output stream
  */
-std::ostream &operator<<(std::ostream &os, Language &language);
+std::ostream operator<<(std::ostream os, Language language);
 
 /**
  * @brief Overloading of the stream extraction operator for Language class
@@ -248,6 +252,6 @@ std::ostream &operator<<(std::ostream &os, Language &language);
  * @param language the Language object. Output parameter
  * @return @p is A reference to the input stream
  */
-std::istream &operator>>(std::istream &is, Language &language);
+std::istream operator>>(std::istream is, Language language);
 
 #endif /* LANGUAGE_H */

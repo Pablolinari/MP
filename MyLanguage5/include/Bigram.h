@@ -132,17 +132,14 @@ bool isValidCharacter(char character, const std::string& validCharacters);
  * @param bigram the Bigram object. Input parameter
  * @return @p os A reference to the output stream
  */
-std::ostream &operator<<(std::ostream & os, const Bigram &bigram);
+std::ostream operator<<(std::ostream os, Bigram bigram);
 
 /**
  * @brief Overloading of the stream extraction operator for Bigram class
- * If it is not possible to read the two character of the bigram from the input
- * stream, then the bigram will be filled with "__"
  * @param is The input stream to be used. Input/Output parameter
  * @param bigram the Bigram object. Output parameter
  * @return @p A reference to the input stream
  */
-std::istream &operator>>(std::istream & is,  Bigram &bigram);
+std::istream operator>>(std::istream is, Bigram bigram);
 
 #endif /* BIGRAM_H */
-

@@ -1,0 +1,50 @@
+"make" -f nbproject/Makefile-CLASSIFY.mk QMAKE= SUBPROJECTS= .build-conf
+make[1]: se entra en el directorio '/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5'
+"make"  -f nbproject/Makefile-CLASSIFY.mk dist/CLASSIFY/GNU-Linux/CLASSIFY
+make[2]: se entra en el directorio '/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5'
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/Bigram.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/Bigram.o.d" -o build/CLASSIFY/GNU-Linux/src/Bigram.o src/Bigram.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/BigramCounter.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/BigramCounter.o.d" -o build/CLASSIFY/GNU-Linux/src/BigramCounter.o src/BigramCounter.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/BigramFreq.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/BigramFreq.o.d" -o build/CLASSIFY/GNU-Linux/src/BigramFreq.o src/BigramFreq.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/CLASSIFY.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/CLASSIFY.o.d" -o build/CLASSIFY/GNU-Linux/src/CLASSIFY.o src/CLASSIFY.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/JOIN.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/JOIN.o.d" -o build/CLASSIFY/GNU-Linux/src/JOIN.o src/JOIN.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/LEARN.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/LEARN.o.d" -o build/CLASSIFY/GNU-Linux/src/LEARN.o src/LEARN.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/Language.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/Language.o.d" -o build/CLASSIFY/GNU-Linux/src/Language.o src/Language.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/metamain.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/metamain.o.d" -o build/CLASSIFY/GNU-Linux/src/metamain.o src/metamain.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/probador.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/probador.o.d" -o build/CLASSIFY/GNU-Linux/src/probador.o src/probador.cpp
+mkdir -p build/CLASSIFY/GNU-Linux/src
+rm -f "build/CLASSIFY/GNU-Linux/src/prueba.o.d"
+g++ -D CLASSIFY   -c -g -Iinclude -std=c++14 -MMD -MP -MF "build/CLASSIFY/GNU-Linux/src/prueba.o.d" -o build/CLASSIFY/GNU-Linux/src/prueba.o src/prueba.cpp
+mkdir -p dist/CLASSIFY/GNU-Linux
+g++ -D CLASSIFY    -o dist/CLASSIFY/GNU-Linux/CLASSIFY build/CLASSIFY/GNU-Linux/src/Bigram.o build/CLASSIFY/GNU-Linux/src/BigramCounter.o build/CLASSIFY/GNU-Linux/src/BigramFreq.o build/CLASSIFY/GNU-Linux/src/CLASSIFY.o build/CLASSIFY/GNU-Linux/src/JOIN.o build/CLASSIFY/GNU-Linux/src/LEARN.o build/CLASSIFY/GNU-Linux/src/Language.o build/CLASSIFY/GNU-Linux/src/metamain.o build/CLASSIFY/GNU-Linux/src/probador.o build/CLASSIFY/GNU-Linux/src/prueba.o 
+/usr/bin/ld: build/CLASSIFY/GNU-Linux/src/JOIN.o: en la función `showEnglishHelp(std::ostream&)':
+/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/JOIN.cpp:28: definiciones múltiples de `showEnglishHelp(std::ostream&)'; build/CLASSIFY/GNU-Linux/src/CLASSIFY.o:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/CLASSIFY.cpp:29: primero se definió aquí
+/usr/bin/ld: build/CLASSIFY/GNU-Linux/src/JOIN.o: en la función `main':
+/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/JOIN.cpp:52: definiciones múltiples de `main'; build/CLASSIFY/GNU-Linux/src/CLASSIFY.o:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/CLASSIFY.cpp:47: primero se definió aquí
+/usr/bin/ld: build/CLASSIFY/GNU-Linux/src/LEARN.o: en la función `showEnglishHelp(std::ostream&)':
+/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/LEARN.cpp:25: definiciones múltiples de `showEnglishHelp(std::ostream&)'; build/CLASSIFY/GNU-Linux/src/CLASSIFY.o:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/CLASSIFY.cpp:29: primero se definió aquí
+/usr/bin/ld: build/CLASSIFY/GNU-Linux/src/LEARN.o: en la función `main':
+/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/LEARN.cpp:47: definiciones múltiples de `main'; build/CLASSIFY/GNU-Linux/src/CLASSIFY.o:/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5/src/CLASSIFY.cpp:47: primero se definió aquí
+collect2: error: ld returned 1 exit status
+make[2]: *** [nbproject/Makefile-CLASSIFY.mk:72: dist/CLASSIFY/GNU-Linux/CLASSIFY] Error 1
+make[2]: se sale del directorio '/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5'
+make[1]: *** [nbproject/Makefile-CLASSIFY.mk:68: .build-conf] Error 2
+make[1]: se sale del directorio '/home/arnold/Escritorio/UGRMPBase/NetBeansProjects/MyLanguage5'
+make: *** [nbproject/Makefile-impl.mk:40: .build-impl] Error 2

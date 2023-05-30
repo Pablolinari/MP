@@ -38,7 +38,7 @@ public:
 
     /**
      * @brief Constructor of the class. The object will contain a matrix of integers
-     * with as many rows and colums as the number of characters in @p validChars
+     * with as many rows and columns as the number of characters in @p validChars
      * Each element of the matrix will be set to 0
      * @param validChars The set of characters that are considered as 
      * part of a word. Input parameter
@@ -50,7 +50,7 @@ public:
      * @param orig the BigramCounter object used as source for the copy. Input
      * parameter
      */
-    BigramCounter(const BigramCounter & orig);
+    BigramCounter(const BigramCounter &orig);
 
     /**
      * @brief Destructor
@@ -80,7 +80,7 @@ public:
      * @param frequency The new frequency. Input parameter
      * @return true if the bigram was found in this object. false otherwise
      */
-    bool setFrequency(const Bigram & bigram, int frequency);
+    bool setFrequency(const Bigram &bigram, int frequency);
 
     /**
      * @brief Increases the current frequency of the given bigram using the value 
@@ -94,7 +94,7 @@ public:
      * @param frequency The quantity that will be added to the current frequency.
      * Input parameter
      */
-    void increaseFrequency(const Bigram & bigram, int frequency = 0);
+    void increaseFrequency(const Bigram &bigram, int frequency = 0);
 
     /**
      * @brief Overloading of the assignment operator
@@ -102,7 +102,7 @@ public:
      * Input parameter
      * @return A reference to this object
      */
-    BigramCounter &operator=(const BigramCounter & orig);
+    BigramCounter&operator=(const BigramCounter & orig);
 
 
     /**
@@ -113,7 +113,7 @@ public:
      * @param rhs a BigramCounter object 
      * @return A reference to this object
      */
-    BigramCounter & operator+=(const BigramCounter & rhs);
+    BigramCounter & operator+=(const BigramCounter &rhs);
 
     /**
      * @brief Reads the given text file and calculates the frequencies of each 
@@ -122,9 +122,8 @@ public:
      * @throw std::ios_base::failure Throws a std::ios_base::failure exception
      * if the given file cannot be opened
      * @param fileName The name of the file to process. Input parameter
-     * @return true if the file could be read; false otherwise
      */
-    bool calculateFrequencies(char* fileName);
+    void calculateFrequencies(char* fileName);
 
     /**
      * @brief Builds a Language object from this BigramCounter object. The 
@@ -145,6 +144,9 @@ private:
      */
     std::string _validCharacters;
 
+    void alocate(int n);
+    void delocate();
+
     /**
      * @brief Overloading of the () operator to access to the element at a 
      * given position
@@ -153,7 +155,7 @@ private:
      * @param column Column of the element. Input parameter
      * @return A const reference to the element at the given position
      */
-    int & operator()(int row, int column)const ;
+    const int & operator()(int row, int column)const ;
 
     /**
      * @brief Overloading of the () operator to access to the element at a 
@@ -164,9 +166,7 @@ private:
      * @return A reference to the element at the given position
      */
     int & operator()(int row, int column);
-    int getCol (const Bigram & bi);
-    int getFil (const Bigram & bi);
-    void clean(int s);
+    void clean(int n);
 };
 
 #endif /* BIGRAM_COUNTER_H */

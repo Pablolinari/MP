@@ -85,10 +85,6 @@ int main(int argc, char* argv[]) {
                 return 1;
             }
         }
-        else if(strcmp(argv[i],"-o") == 1){
-            showEnglishHelp(cout);
-            return 1;
-        }
         else{
             showEnglishHelp(cout);
             return 1;
@@ -106,8 +102,9 @@ int main(int argc, char* argv[]) {
         aux.load(argv[i]);
         total+=aux;
     }
+    total.sort();
 
-    total.save(argv[outfile]);
+    total.save(argv[outfile],mode);
     
     return 0;
 }
