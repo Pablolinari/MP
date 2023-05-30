@@ -11,7 +11,14 @@
  * 
  * Created on 29 January 2023, 11:00
  */
+#include <iostream>
+#include <string>
+#include <cstring>
+#include "BigramFreq.h"
+#include "Language.h"
+#include "BigramCounter.h"
 
+using namespace std;
 
 /**
  * Shows help about the use of this program in the given output stream
@@ -43,9 +50,65 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char* argv[]) {
-    if(argc <= 1){
-        showEnglishHelp();
+    char mode = 't';
+    string outputfile ;
+    int nfiles , outfile =0, sum = 1;
+    
+    if(argc == 1){
+        showEnglishHelp(cout);
         return 1;
     }
+    nfiles = argc -sum;
+    for (int i = 1; i<argc && argv[i][0] == '-'; i++){
+        nfiles = 0;
+        if(strcmp(argv[i] ,"-b") == 0){
+            mode = 'b';
+            sum += 1;
+            nfiles = argc - sum ;
+        }
+        else if(strcmp(argv[i],"-t") == 0){
+            
+            mode = 't';
+            sum+=1;
+            nfiles = argc - sum ;
+        }
+        else if(strcmp(argv[i],"-o") == 0){
+            if(argc > i+1){
+                outputfile = argv[i+1];
+                i++;
+                outfile = i;
+                sum+=2;
+                nfiles = argc - sum ;
+            }
+            else{
+                showEnglishHelp(cout);
+                return 1;
+            }
+        }
+        else if(strcmp(argv[i],"-o") == 1){
+            showEnglishHelp(cout);
+            return 1;
+        }
+        else{
+            showEnglishHelp(cout);
+            return 1;
+        }
+    }
+
+    if(nfiles < 1){
+        showEnglishHelp(cout);
+        return 1;
+    }
+
+    Language total , aux;
+
+    for(int i = argc -nfiles; i< argc; i++){
+        aux.load(argv[i]);
+        total+=aux;
+    }
+
+    total.save(argv[outfile]);
+    
+    return 0;
 }
 
