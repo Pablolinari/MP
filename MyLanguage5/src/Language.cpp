@@ -3,8 +3,8 @@
 #include"BigramFreq.h"
 #include<cmath>
 
-const std::string Language::MAGIC_STRING_B = "MP-LANGUAGE-T-1.0";
-const std::string Language::MAGIC_STRING_T = "MP-LANGUAGE-B-1.0";
+const std::string Language::MAGIC_STRING_T = "MP-LANGUAGE-T-1.0";
+const std::string Language::MAGIC_STRING_B = "MP-LANGUAGE-B-1.0";
 
 Language::Language() {
     _languageId = "unknown";
@@ -82,6 +82,7 @@ BigramFreq & Language::at(int index) {
 int Language::getSize() const {
     return _size;
 }
+
 double Language::getDistance(const Language& otherLanguage)const {
     int sum = 0;
     int pos;
@@ -147,106 +148,78 @@ void Language::sort() {
     }
 }
 
-void Language::save(const char fileName[], char mode ) const {
+void Language::save(const char fileName[], char mode) const {
     std::ofstream outputStream;
-    if(mode =='t'){
-        outputStream.open(fileName,std::ios_base::binary);
+    if (mode == 't') {
+        outputStream.open(fileName, std::ios_base::binary);
 
         if (outputStream) {
+            
             outputStream << MAGIC_STRING_T << std::endl;
-            outputStream << this;
-
-            if (!outputStream) {
-                throw std::ios_base::failure("the file is closed ");
-            }
-
+            outputStream << toString();
             outputStream.close();
-        } else {
-            throw std::ios_base::failure("the file is closed ");
         }
-    }
-    else if (mode == 'b'){
+        else {
+            throw std::ios_base::failure("the file is closed in save text");
+        }
+    } else if (mode == 'b') {
 
-        outputStream.open(fileName,std::ios_base::binary);
-        if(outputStream){
-            outputStream << MAGIC_STRING_B<< std::endl;
+        outputStream.open(fileName, std::ios_base::binary);
+        if (outputStream) {
+            outputStream << MAGIC_STRING_B << std::endl;
             outputStream << _languageId << std::endl;
-            outputStream << _size<<std::endl;
-            for (int i = 0; i<_size; i++){
+            outputStream << _size << std::endl;
+            for (int i = 0; i < _size; i++) {
                 _vectorBigramFreq[i].serialize(outputStream);
             }
             if (!outputStream) {
-                throw std::ios_base::failure("the file is closed ");
+                throw std::ios_base::failure("the file is closed  in save binari");
             }
             outputStream.close();
-        }
-        else{
-            throw std::ios_base::failure("the file is closed ");
+        } 
+        else {
+            throw std::ios_base::failure("the file is closed in save ");
         }
 
 
     }
 }
 
-void Language::load(const char fileName[], char mode ) {
+void Language::load(const char fileName[]) {
     std::ifstream inputStream;
     std::string magicCad;
     int frequency;
     std::string bigram;
-    if(mode == 't'){
-        inputStream.open(fileName,std::ios_base::binary);
-        if (inputStream) {
-            inputStream >>magicCad;
-            inputStream >>_languageId;
-            inputStream >> _size;
-            if (magicCad != MAGIC_STRING_T || magicCad != MAGIC_STRING_B){
-                throw std::invalid_argument("in function load Magic strings are not the same  ");
-            }
-            if (_size < 0) {
-                throw std::out_of_range("not valid size ");
-            }
-            _vectorBigramFreq = new BigramFreq[_size];
-            for (int x = 0; x < _size; x++) {
-                inputStream>>bigram;
-                inputStream>>frequency;
-                _vectorBigramFreq[x].setBigram(bigram);
-                _vectorBigramFreq[x].setFrequency(frequency);
+    inputStream.open(fileName, std::ios_base::binary);
+    inputStream >>magicCad;
+    if (inputStream && magicCad == MAGIC_STRING_T) {
+        inputStream >>_languageId;
+        inputStream >> _size;
+        if (_size < 0) {
+            throw std::out_of_range("not valid size ");
+        }
+        alocate(_size);
+        for (int x = 0; x < _size; x++) {
+            inputStream>>bigram;
+            inputStream>>frequency;
+            _vectorBigramFreq[x].setBigram(bigram);
+            _vectorBigramFreq[x].setFrequency(frequency);
 
-            }
-            if (!inputStream) {
-                throw std::ios_base::failure("the file is closed ");
-            }
+        }
+        inputStream.close();
+    }
+    else if (magicCad == MAGIC_STRING_B && inputStream) {
 
-            inputStream.close();
+        inputStream >>_languageId;
+        inputStream >> _size;
+        alocate(_size);
+        for (int i = 0; i < _size; i++) {
+            _vectorBigramFreq[i].deserialize(inputStream);
         }
-        else {
-            throw std::out_of_range("the file is closed ");
-        }
-    }else if(mode == 'b'){
-        inputStream.open(fileName,std::ios_base::binary);
-        if (inputStream) {
-            inputStream >>magicCad;
-            inputStream >>_languageId;
-            inputStream >> _size;
-            if (magicCad != MAGIC_STRING_T || magicCad != MAGIC_STRING_B){
-                throw std::invalid_argument("in function load Magic strings are not the same  ");
-            }
-            if (_size < 0) {
-                throw std::out_of_range("not valid size ");
-            }
-            alocate(_size);
-            for (int i = 0; i<_size; i++){
-                _vectorBigramFreq[i].deserialize(inputStream);
-            }
-            if (!inputStream) {
-                throw std::ios_base::failure("the file is closed ");
-            }
-
-            inputStream.close();
-        }
-        else {
-            throw std::out_of_range("the file is closed ");
-        }
+        inputStream.close();
+    } 
+    else {
+        throw std::out_of_range("the file is closed in load");
     }
 }
 
@@ -272,51 +245,53 @@ void Language::append(const BigramFreq &bigramFreq) {
 
 }
 
-BigramFreq Language::operator[](int index)const{
-    return at(index);
-}
-BigramFreq & Language::operator[](int index){
+BigramFreq Language::operator[](int index) const {
     return at(index);
 }
 
-Language & Language::operator+=(const Language & language){
-    for(int i = 0; i<language._size; i++){
+BigramFreq & Language::operator[](int index) {
+    return at(index);
+}
+
+Language & Language::operator+=(const Language & language) {
+    for (int i = 0; i < language._size; i++) {
         append(language._vectorBigramFreq[i]);
     }
     return *this;
 }
 
-
-void Language::alocate(int n){
+void Language::alocate(int n) {
     _vectorBigramFreq = new BigramFreq [n];
     _size = n;
 }
-void Language::delocate(){
+
+void Language::delocate() {
     delete [] _vectorBigramFreq;
     _vectorBigramFreq = nullptr;
     _size = 0;
 }
 
-std::istream  &operator>>(std::istream& is, Language &language){
-    std::string magicstring , languageid , bigram;
-    int freq; 
+std::istream &operator>>(std::istream& is, Language &language) {
+    std::string magicstring, languageid, bigram;
+    int freq;
     is >> magicstring;
     is >> languageid;
     is >> freq;
     language.setLanguageId(languageid);
-    while (is){
+    while (is) {
         is >> bigram;
         is >> freq;
         BigramFreq bigramFreq;
         bigramFreq.setBigram(Bigram(bigram));
         bigramFreq.setFrequency(freq);
         language.append(bigramFreq);
-    
+
     }
     return is;
 }
-std::ostream  &operator<<(std::ostream &os , Language& language){
-    os<< language.toString();
+
+std::ostream &operator<<(std::ostream &os, Language& language) {
+    os << language.toString();
     return os;
 }
 

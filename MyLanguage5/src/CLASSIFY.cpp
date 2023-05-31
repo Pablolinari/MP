@@ -45,7 +45,7 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char *argv[]) {
- int files = argc - 2 ,txt= 1 ,firstbgr=2; //numero de idiomas languages a comparar , posicion del primer lanaguage
+ int files = argc-2,txt= 1 ,firstbgr=2; //numero de idiomas languages a comparar , posicion del primer lanaguage
     
     //compruebo que todos los parametros de la función sean correctos , 
     //en caso de que falte alguno termina la ejecución del programa.
@@ -63,15 +63,14 @@ int main(int argc, char *argv[]) {
     Language *array_language;
     array_language = new Language [files];
     BigramCounter matrix;
-    Language language_aux;
     matrix.calculateFrequencies(argv[txt]);
-    language_aux=matrix.toLanguage();
+    Language language_aux(matrix.toLanguage());
+    language_aux.sort();
     int aux=0;
     for (int x  = firstbgr ; x<argc; x++){
         
         array_language[aux].load(argv[x]);
         array_language[aux].sort();
-        std::cout << "Distance to " <<argv[x]<<": " << language_aux.getDistance(array_language[aux])<<std::endl;
         aux++;
     }
 
@@ -79,6 +78,7 @@ int main(int argc, char *argv[]) {
     double min = language_aux.getDistance(array_language[0]);
     
     for(int j = 0; j<files ; j++){
+       
         if(language_aux.getDistance(array_language[j]) < min){
             min = language_aux.getDistance(array_language[j]);
             pos = j;
@@ -86,10 +86,9 @@ int main(int argc, char *argv[]) {
     }
     
 
-        
-    std::cout << "Nearest language file: "<< argv[pos + firstbgr ]<<std::endl;
-    std::cout <<"Identifier of the nearest language: "  << array_language[pos].getLanguageId() << std::endl;
-
+    language_aux.setLanguageId(array_language[pos].getLanguageId());
+    std::cout << "Final decision: language "<<language_aux.getLanguageId() <<" with a distance of "<< min<<std::endl;
+    
     
 
     delete [] array_language;

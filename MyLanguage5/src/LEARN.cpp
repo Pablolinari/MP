@@ -110,12 +110,12 @@ int main(int argc, char *argv[]) {
     BigramFreq bigramfreq;
     BigramCounter matrix , matrixb; 
     Language language;
-    language.setLanguageId(languageId);
     for(int i = argc-nfiles ; i<argc; i++){
         matrixb.calculateFrequencies(argv[i]);
         matrix+=matrixb;
     }
     language = matrix.toLanguage();
+    language.setLanguageId(languageId);
     language.sort();
     
     if(outfile > 0){

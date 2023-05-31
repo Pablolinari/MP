@@ -186,7 +186,7 @@ public:
      * @throw throw std::invalid_argument Throws a std::invalid_argument 
      * exception if an invalid magic string is found in the given file
      */
-    void load(const char fileName[], char mode = 't');
+    void load(const char fileName[]);
 
     
     /**

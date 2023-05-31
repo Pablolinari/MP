@@ -51,7 +51,7 @@ void showEnglishHelp(ostream& outputStream) {
  */
 int main(int argc, char* argv[]) {
     char mode = 't';
-    string outputfile ;
+    string outputfile = "output.bgr";
     int nfiles , outfile =0, sum = 1;
     
     if(argc == 1){
@@ -97,14 +97,19 @@ int main(int argc, char* argv[]) {
     }
 
     Language total , aux;
-
-    for(int i = argc -nfiles; i< argc; i++){
-        aux.load(argv[i]);
-        total+=aux;
+    
+   for(int i = argc -nfiles; i< argc; i++){
+       aux.load(argv[i]);
+      total+=aux;
     }
     total.sort();
-
-    total.save(argv[outfile],mode);
+    total.setLanguageId(aux.getLanguageId());
+    if(outfile == 0){
+        total.save(outputfile.c_str(),mode);
+    }
+    else{
+        total.save(argv[outfile],mode);
+    }
     
     return 0;
 }

@@ -63,8 +63,8 @@ int BigramCounter::getNumberActiveBigrams()const{
 bool BigramCounter::setFrequency(const Bigram &bigram ,int frequency){
     int i ,j;
     bool exist =false;
-    i =_validCharacters.find(bigram.toString().at(0));
-    j =_validCharacters.find(bigram.toString().at(1));
+    j =_validCharacters.find(bigram.toString().at(0));
+    i =_validCharacters.find(bigram.toString().at(1));
 
     if(i!= std::string::npos && j != std::string::npos){
         _frequency[i][j] = frequency;
@@ -75,8 +75,8 @@ bool BigramCounter::setFrequency(const Bigram &bigram ,int frequency){
 
 void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency){
     int i,j;
-    i =_validCharacters.find(bigram.toString().at(0));
-    j =_validCharacters.find(bigram.toString().at(1));
+    j =_validCharacters.find(bigram.toString().at(0));
+    i =_validCharacters.find(bigram.toString().at(1));
     
     if(i!= std::string::npos && j != std::string::npos){
         if(frequency == 0){
@@ -87,7 +87,7 @@ void BigramCounter::increaseFrequency(const Bigram & bigram ,int frequency){
         }
     }
     else{
-        throw std::invalid_argument("theg iven bigram is not valid");
+        throw std::invalid_argument("the  given bigram is not valid");
     }
 }
 BigramCounter & BigramCounter::operator=(const BigramCounter & orig){
@@ -147,7 +147,7 @@ Language BigramCounter::toLanguage(){
         for(int j = 0; j< getSize(); j++){
             if(_frequency[i][j] > 0){
                 bigram.setFrequency(_frequency[i][j]);
-                bigram.setBigram(Bigram(_validCharacters.at(i) , _validCharacters.at(j)));
+                bigram.setBigram(Bigram(_validCharacters.at(j) , _validCharacters.at(i)));
                 language.append(bigram);
             }
         }
