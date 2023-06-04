@@ -11,6 +11,8 @@
  * 
  * Created on 29 January 2023, 11:00
  */
+#include<sstream>
+#include <regex>
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -50,9 +52,10 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char* argv[]) {
+
     char mode = 't';
     string outputfile = "output.bgr";
-    int nfiles , outfile =0, sum = 1;
+    int nfiles ,  sum = 1;
     
     if(argc == 1){
         showEnglishHelp(cout);
@@ -76,7 +79,6 @@ int main(int argc, char* argv[]) {
             if(argc > i+1){
                 outputfile = argv[i+1];
                 i++;
-                outfile = i;
                 sum+=2;
                 nfiles = argc - sum ;
             }
@@ -101,15 +103,12 @@ int main(int argc, char* argv[]) {
    for(int i = argc -nfiles; i< argc; i++){
        aux.load(argv[i]);
       total+=aux;
+
     }
     total.sort();
     total.setLanguageId(aux.getLanguageId());
-    if(outfile == 0){
-        total.save(outputfile.c_str(),mode);
-    }
-    else{
-        total.save(argv[outfile],mode);
-    }
+    total.save(outputfile.c_str(),mode);
+
     
     return 0;
 }

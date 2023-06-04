@@ -122,17 +122,19 @@ BigramCounter & BigramCounter::operator+=(const BigramCounter & rhs){
 }
 
 void BigramCounter::calculateFrequencies(char* fileName){
+    clean(_validCharacters.size());
     std::ifstream read;
-    clean(getSize());
     read.open(fileName);
     while (read){
         std::string line; 
         getline(read,line);
         int i, j;
-        
+        char a,b;
         for(int i = 1; i< line.size();i++){
-            if(isValidCharacter(tolower(line.at(i-1)),_validCharacters) && isValidCharacter(tolower(line.at(i)),_validCharacters)){
-                increaseFrequency(Bigram(tolower(line.at(i-1)),tolower(line.at(i))));
+            a = tolower(line.at(i-1));
+            b = tolower(line.at(i));
+            if(isValidCharacter(a,_validCharacters) && isValidCharacter(b,_validCharacters)){
+                increaseFrequency(Bigram(a,b),1);
             }
         }
     }

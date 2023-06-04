@@ -42,9 +42,10 @@ Language::~Language() {
 }
 
 Language& Language::operator=(const Language& orig) {
+    delocate();
     _size = orig.getSize();
     _languageId = orig.getLanguageId();
-    _vectorBigramFreq = new BigramFreq[_size];
+    alocate(_size);
     for (int x = 0; x < _size; x++) {
         _vectorBigramFreq[x] = orig.at(x);
     }
@@ -186,6 +187,7 @@ void Language::save(const char fileName[], char mode) const {
 }
 
 void Language::load(const char fileName[]) {
+    delocate();
     std::ifstream inputStream;
     std::string magicCad;
     int frequency;
@@ -195,16 +197,16 @@ void Language::load(const char fileName[]) {
     if (inputStream && magicCad == MAGIC_STRING_T) {
         inputStream >>_languageId;
         inputStream >> _size;
+
         if (_size < 0) {
             throw std::out_of_range("not valid size ");
         }
-        alocate(_size);
+        _vectorBigramFreq = new BigramFreq[_size];
         for (int x = 0; x < _size; x++) {
             inputStream>>bigram;
             inputStream>>frequency;
             _vectorBigramFreq[x].setBigram(bigram);
             _vectorBigramFreq[x].setFrequency(frequency);
-
         }
         inputStream.close();
     }
@@ -254,15 +256,21 @@ BigramFreq & Language::operator[](int index) {
 }
 
 Language & Language::operator+=(const Language & language) {
-    for (int i = 0; i < language._size; i++) {
-        append(language._vectorBigramFreq[i]);
+    for (int i = 0; i < language.getSize(); i++) {
+        append(language[i]);
     }
     return *this;
 }
 
 void Language::alocate(int n) {
+    if (n>0){
     _vectorBigramFreq = new BigramFreq [n];
     _size = n;
+    }
+    else if (n==0){
+        _vectorBigramFreq = nullptr;
+        _size =0;
+    }
 }
 
 void Language::delocate() {

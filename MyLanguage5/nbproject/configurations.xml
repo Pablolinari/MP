@@ -50,7 +50,6 @@
           <incDir>
             <pElem>include</pElem>
           </incDir>
-          <commandLine>-D LEARN</commandLine>
         </ccTool>
       </compileType>
       <item path="include/Bigram.h" ex="false" tool="3" flavor2="0">
