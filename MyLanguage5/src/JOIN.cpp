@@ -11,12 +11,10 @@
  * 
  * Created on 29 January 2023, 11:00
  */
-#include<sstream>
-#include <regex>
+
 #include <iostream>
 #include <string>
 #include <cstring>
-#include "BigramFreq.h"
 #include "Language.h"
 #include "BigramCounter.h"
 
@@ -52,6 +50,7 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char* argv[]) {
+
 
     char mode = 't';
     string outputfile = "output.bgr";
@@ -109,7 +108,6 @@ int main(int argc, char* argv[]) {
     total.setLanguageId(aux.getLanguageId());
     total.save(outputfile.c_str(),mode);
 
-    
     return 0;
 }
 

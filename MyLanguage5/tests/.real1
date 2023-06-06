@@ -1,4 +1,2 @@
 %%%OUTPUT
-terminate called after throwing an instance of 'std::out_of_range'
-  what():  the file is closed in load
-Aborted (core dumped)
+Final decision: language spanish with a distance of 0.119412

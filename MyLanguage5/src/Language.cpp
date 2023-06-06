@@ -214,6 +214,7 @@ void Language::load(const char fileName[]) {
 
         inputStream >>_languageId;
         inputStream >> _size;
+        inputStream.get();
         alocate(_size);
         for (int i = 0; i < _size; i++) {
             _vectorBigramFreq[i].deserialize(inputStream);

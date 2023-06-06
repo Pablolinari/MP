@@ -89,10 +89,10 @@ std::string Bigram::getText()const{
      
  }
  void Bigram::serialize(std::ostream& outputStream){
-    outputStream.write(reinterpret_cast<const char *> (&_text), sizeof(char)*2);
+    outputStream.write(_text, sizeof(char)*2);
  }
  void Bigram::deserialize(std::istream& inputStream){
-    inputStream.read(reinterpret_cast< char *> (&_text), sizeof(char)*2);
+    inputStream.read(_text, sizeof(char)*2);
  }
  
  std::ostream & operator<<(std::ostream & os , const Bigram & bigram){
