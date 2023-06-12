@@ -50,6 +50,8 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char* argv[]) {
+   
+
 
 
     char mode = 't';
@@ -107,6 +109,7 @@ int main(int argc, char* argv[]) {
     total.sort();
     total.setLanguageId(aux.getLanguageId());
     total.save(outputfile.c_str(),mode);
+
 
     return 0;
 }

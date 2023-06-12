@@ -282,24 +282,24 @@ void Language::delocate() {
 
 std::istream &operator>>(std::istream& is, Language &language) {
     std::string magicstring, languageid, bigram;
-    int freq;
-    is >> magicstring;
+    int size , freq ,cont = 0;
     is >> languageid;
-    is >> freq;
+    is >> size;
     language.setLanguageId(languageid);
-    while (is) {
+    while (is && (cont < size)) {
         is >> bigram;
         is >> freq;
         BigramFreq bigramFreq;
         bigramFreq.setBigram(Bigram(bigram));
         bigramFreq.setFrequency(freq);
         language.append(bigramFreq);
-
+        cont ++;
     }
+    
     return is;
 }
 
-std::ostream &operator<<(std::ostream &os, Language& language) {
+std::ostream &operator<<(std::ostream &os, const Language& language){
     os << language.toString();
     return os;
 }
