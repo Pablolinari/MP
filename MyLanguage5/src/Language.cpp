@@ -127,18 +127,13 @@ void Language::sort() {
 
         for (int j = x + 1; j < _size; j++) {
 
-            if (max.getFrequency() == _vectorBigramFreq[j].getFrequency() &&
-                    max.getBigram().toString() > _vectorBigramFreq[j].getBigram().toString()) {
 
-                max = _vectorBigramFreq[j];
-                pos = j;
-
-            }
-
-            if (_vectorBigramFreq[j].getFrequency() > max.getFrequency()) {
+            if (_vectorBigramFreq[j] > max) {
                 max = _vectorBigramFreq[j];
                 pos = j;
             }
+
+
         }
 
         BigramFreq swap;
@@ -157,7 +152,7 @@ void Language::save(const char fileName[], char mode) const {
         if (outputStream) {
             
             outputStream << MAGIC_STRING_T << std::endl;
-            outputStream << toString();
+            outputStream << *this;
             outputStream.close();
         }
         else {
@@ -195,19 +190,8 @@ void Language::load(const char fileName[]) {
     inputStream.open(fileName, std::ios_base::binary);
     inputStream >>magicCad;
     if (inputStream && magicCad == MAGIC_STRING_T) {
-        inputStream >>_languageId;
-        inputStream >> _size;
-
-        if (_size < 0) {
-            throw std::out_of_range("not valid size ");
-        }
-        _vectorBigramFreq = new BigramFreq[_size];
-        for (int x = 0; x < _size; x++) {
-            inputStream>>bigram;
-            inputStream>>frequency;
-            _vectorBigramFreq[x].setBigram(bigram);
-            _vectorBigramFreq[x].setFrequency(frequency);
-        }
+        inputStream >> *this;
+    
         inputStream.close();
     }
     else if (magicCad == MAGIC_STRING_B && inputStream) {
@@ -248,7 +232,7 @@ void Language::append(const BigramFreq &bigramFreq) {
 
 }
 
-BigramFreq Language::operator[](int index) const {
+ const BigramFreq& Language::operator[](int index) const {
     return at(index);
 }
 
@@ -281,17 +265,14 @@ void Language::delocate() {
 }
 
 std::istream &operator>>(std::istream& is, Language &language) {
-    std::string magicstring, languageid, bigram;
+    std::string languageid, bigram;
     int size , freq ,cont = 0;
     is >> languageid;
     is >> size;
     language.setLanguageId(languageid);
     while (is && (cont < size)) {
-        is >> bigram;
-        is >> freq;
         BigramFreq bigramFreq;
-        bigramFreq.setBigram(Bigram(bigram));
-        bigramFreq.setFrequency(freq);
+        is >> bigramFreq;
         language.append(bigramFreq);
         cont ++;
     }

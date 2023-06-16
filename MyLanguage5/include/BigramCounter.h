@@ -43,7 +43,7 @@ public:
      * @param validChars The set of characters that are considered as 
      * part of a word. Input parameter
      */
-    BigramCounter(std::string validChars = DEFAULT_VALID_CHARACTERS);
+    BigramCounter(const std::string validChars = DEFAULT_VALID_CHARACTERS);
 
     /**
      * @brief Copy constructor
@@ -123,7 +123,7 @@ public:
      * if the given file cannot be opened
      * @param fileName The name of the file to process. Input parameter
      */
-    void calculateFrequencies(char* fileName);
+    void calculateFrequencies(const char* fileName);
 
     /**
      * @brief Builds a Language object from this BigramCounter object. The 
@@ -132,7 +132,7 @@ public:
      * Query method
      * @return A Language object from this BigramCounter object
      */
-    Language toLanguage();
+    Language toLanguage() const;
 
 private:
     int** _frequency; ///< 2D matrix with the frequency of each bigram

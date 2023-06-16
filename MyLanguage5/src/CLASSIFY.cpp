@@ -45,6 +45,7 @@ void showEnglishHelp(ostream& outputStream) {
  * @return 0 If there is no error; a value > 0 if error
  */
 int main(int argc, char *argv[]) {
+
  int files = argc-2,txt= 1 ,firstbgr=2; //numero de idiomas languages a comparar , posicion del primer lanaguage
     
     //compruebo que todos los parametros de la función sean correctos , 
@@ -65,7 +66,6 @@ int main(int argc, char *argv[]) {
     BigramCounter matrix;
     matrix.calculateFrequencies(argv[txt]);
     Language language_aux(matrix.toLanguage());
-    language_aux.sort();
     int aux=0;
     for (int x  = firstbgr ; x<argc; x++){
         
@@ -92,6 +92,9 @@ int main(int argc, char *argv[]) {
     
 
     delete [] array_language;
+
+
+    return 0;
     
 }
 

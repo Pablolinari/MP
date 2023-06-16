@@ -108,8 +108,8 @@ std::istream &operator>>(std::istream &is, BigramFreq &bigramFreq);
  * @brief Overloading of the relational operator > for BigramFreq class
  * @param bigramFreq1 The first object to be compared. Input parameter
  * @param bigramFreq2 The second object to be compared. Input parameter
- * @return true if the frequency of @p bigramFreq1 is lower than that of
- * @p bigramFreq2 or if both frequencies are equals and the text of the
+ * @return true if the frequency of @p bigramFreq1 is greater than that of
+ * @p bigramFreq2 or if both frequencies are equals and the text of 
  * @p bigramFreq1 is minor than the text of @p bigramFreq2; false otherwise
  */
 bool operator>(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2);
@@ -118,7 +118,7 @@ bool operator>(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2);
  * @brief Overloading of the operator < for BigramFreq class
  * @param bigramFreq1 a Bigram object. Input parameter
  * @param bigramFreq2 a Bigram object. Input parameter
- * @return true if the bigramFreq1 < bigramFreq2; false otherwise
+ * @return true if bigramFreq1 < bigramFreq2; false otherwise
  */
 bool operator<(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2);
 
@@ -130,7 +130,6 @@ bool operator<(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2);
  * false otherwise
  */
 bool operator==(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2);
-
 /**
  * @brief Overloading of the operator != for BigramFreq class
  * @param bigramFreq1 a Bigram object. Input parameter
@@ -144,7 +143,7 @@ bool operator!=(const BigramFreq &bigramFreq1, const BigramFreq &bigramFreq2);
  * @brief Overloading of the operator <= for BigramFreq class
  * @param bigramFreq1 a Bigram object. Input parameter
  * @param bigramFreq2 a Bigram object. Input parameter
- * @return true if the bigramFreq1 <= bigramFreq2; false otherwise
+ * @return true if bigramFreq1 <= bigramFreq2; false otherwise
  */
 bool operator<=(const BigramFreq&bigramFreq1, const BigramFreq &bigramFreq2);
 
@@ -152,7 +151,7 @@ bool operator<=(const BigramFreq&bigramFreq1, const BigramFreq &bigramFreq2);
  * @brief Overloading of the operator >= for BigramFreq class
  * @param bigramFreq1 a Bigram object. Input parameter
  * @param bigramFreq2 a Bigram object. Input parameter
- * @return true if the bigramFreq1 >= bigramFreq2
+ * @return true if bigramFreq1 >= bigramFreq2
  */
 bool operator>=(const BigramFreq & bigramFreq1, const BigramFreq &bigramFreq2);
 

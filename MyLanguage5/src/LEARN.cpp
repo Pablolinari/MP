@@ -75,8 +75,6 @@ int main(int argc, char *argv[]) {
             if (argc > i + 1) {
                 languageId = argv[i + 1];
                 i++;
-
-
                 sum += 2;
                 nfiles = argc - sum;
             } else {
@@ -105,6 +103,7 @@ int main(int argc, char *argv[]) {
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
+    
     BigramCounter matrix;
 
     Language language;
@@ -112,12 +111,13 @@ int main(int argc, char *argv[]) {
 
 
     for (int i = argc - nfiles; i < argc; i++) {
+
         matrix.calculateFrequencies(argv[i]);
         language+=matrix.toLanguage();
-    }
 
-    language.setLanguageId(languageId);
+    }
     language.sort();
+    language.setLanguageId(languageId);
     language.save(outputfile.c_str(), mode);
 
 

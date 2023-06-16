@@ -121,29 +121,32 @@ BigramCounter & BigramCounter::operator+=(const BigramCounter & rhs) {
     return *this;
 }
 
-void BigramCounter::calculateFrequencies(char* fileName) {
+void BigramCounter::calculateFrequencies(const char* fileName) {
     clean(_validCharacters.size());
     std::ifstream read;
     read.open(fileName);
     std::string word;
+    char a, b;
     if (read) {
         while (read >> word) {
-            int i, j;
-            char a, b;
-            for (int i = 1; i < word.size(); i++) {
-                a = tolower(word.at(i - 1));
-                b = tolower(word.at(i));
-                if (isValidCharacter(a, _validCharacters) && isValidCharacter(b, _validCharacters)) {
-                    increaseFrequency(Bigram(a, b), 1);
+            if (word.size() >= 2) {
+                for (int i = 1; i < word.size(); i++) {
+                    a = tolower(word.at(i - 1));
+                    b = tolower(word.at(i));
+                    if (isValidCharacter(a, _validCharacters) && isValidCharacter(b, _validCharacters)) {
+                        increaseFrequency(Bigram(a, b), 1);
+                    }
                 }
             }
         }
+    } else {
+        throw std::ios_base::failure("File can't be opened in function calculatefrequencies");
     }
     read.close();
 
 }
 
-Language BigramCounter::toLanguage() {
+Language BigramCounter::toLanguage()const {
     Language language;
     BigramFreq bigram;
 
@@ -156,6 +159,7 @@ Language BigramCounter::toLanguage() {
             }
         }
     }
+    language.sort();
     return language;
 }
 

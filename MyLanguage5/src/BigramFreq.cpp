@@ -24,7 +24,7 @@ void BigramFreq::setBigram(const Bigram &bigram)
 
 void BigramFreq::setFrequency(int frequency)
 {
-    if (frequency > 0)
+    if (frequency >= 0)
     {
         _frequency = frequency;
     }
@@ -68,7 +68,7 @@ std::istream &operator>>(std::istream &is, BigramFreq &bigramFreq){
 
 bool operator>(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
     bool mayor = false;
-    if(bigramFreq1.getFrequency() < bigramFreq2.getFrequency()){
+    if(bigramFreq1.getFrequency() > bigramFreq2.getFrequency()){
         mayor = true;
     }
     else if(bigramFreq1.getFrequency() == bigramFreq2.getFrequency()&& bigramFreq1.getBigram().toString()< bigramFreq2.getBigram().toString()){
@@ -78,14 +78,14 @@ bool operator>(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
 }
 
 bool operator<(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){
-    bool mayor = false;
-    if(bigramFreq1.getFrequency() > bigramFreq2.getFrequency()){
-        mayor = true;
+    bool menor = false;
+    if(bigramFreq1.getFrequency() < bigramFreq2.getFrequency()){
+        menor = true;
     }
     else if(bigramFreq1.getFrequency() == bigramFreq2.getFrequency()&& bigramFreq1.getBigram().toString()> bigramFreq2.getBigram().toString()){
-        mayor = true;
+        menor = true;
     }
-    return mayor;
+    return menor;
 }
 
 bool operator==(const BigramFreq &bigramFreq1, const  BigramFreq &bigramFreq2){

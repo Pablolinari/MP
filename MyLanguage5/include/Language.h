@@ -204,7 +204,7 @@ public:
      * @param index index of the element. Input parameter
      * @return A reference to the BigramFreq object at position @p index
      */
-    BigramFreq operator[](int index)const;
+    const BigramFreq &operator[](int index)const;
 
     /**
      * @brief Overloading of the [] operator for Language class
